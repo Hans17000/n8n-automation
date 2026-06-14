@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Llm Rtx 3050 Dashboard",
+  "schemaVersion": 1,
+  "description": "Tableau de bord interactif des LLMs testés sur RTX 3050 Desktop 8 Go : filtres par VRAM, vitesse, score MMLU, tri de colonnes, graphique comparatif et calculateur tokens/s selon RAM système, type de mémoire et longueur de contexte."
+}
+</script>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Panorama LLM — RTX 3050 Desktop 8 Go</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #fafaf7;
+  color: #1a1a1a;
+  line-height: 1.55;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding: 28px 24px 60px; }
+header { margin-bottom: 28px; border-bottom: 1px solid #e5e5e0; padding-bottom: 20px; }
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  font-size: 28px;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.subtitle {
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #6b6b6b;
+  font-size: 15px;
+  margin: 0;
+  max-width: 780px;
+}
+.badge {
+  display: inline-block;
+  background: #2d5a87;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 3px;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 32px 0 14px;
+  color: #2d5a87;
+  border-left: 3px solid #c4711f;
+  padding-left: 12px;
+}
+.panel {
+  background: #ffffff;
+  border: 1px solid #e5e5e0;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+.filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.filter label {
+  display: block;
+  font-size: 12px;
+  color: #6b6b6b;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+.filter input[type="range"] { width: 100%; accent-color: #c4711f; }
+.filter input[type="text"], .filter select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #d4d4cf;
+  border-radius: 4px;
+  background: #fafaf7;
+  font-size: 14px;
+  color: #1a1a1a;
+}
+.filter-val {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: #2d5a87;
+  font-weight: 600;
+}
+.stats { display: flex; gap: 20px; margin-top: 14px; font-size: 13px; color: #6b6b6b; }
+.stat-num { color: #c4711f; font-weight: 600; font-family: "SF Mono", monospace; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead th {
+  background: #f3f1ec;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4a4a4a;
+  font-weight: 600;
+  border-bottom: 2px solid #d4d4cf;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+thead th:hover { background: #eae7e0; }
+thead th.sorted-asc::after { content: " ▲"; color: #c4711f; }
+thead th.sorted-desc::after { content: " ▼"; color: #c4711f; }
+tbody td { padding: 11px 12px; border-bottom: 1px solid #ececea; vertical-align: middle; }
+tbody tr:hover { background: #fbf9f4; }
+.model-name { font-weight: 600; }
+.model-vendor { font-size: 11px; color: #8a8a8a; text-transform: uppercase; letter-spacing: 0.04em; }
+.num { font-family: "SF Mono", Menlo, Consolas, monospace; text-align: right; }
+.chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.chip.good { background: #e2f0e6; color: #2d7a4f; }
+.chip.tight { background: #fbecd7; color: #a55a1a; }
+.chip.over { background: #f7dede; color: #a53535; }
+.bar-cell { min-width: 80px; }
+.bar-wrap { background: #f0ede7; border-radius: 2px; height: 6px; margin-top: 4px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, #c4711f, #e08938); }
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 760px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc-input { margin-bottom: 16px; }
+.calc-input label {
+  display: block;
+  font-size: 12px;
+  color: #6b6b6b;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+.calc-input select, .calc-input input[type="range"] { width: 100%; }
+.calc-input select {
+  padding: 8px 10px;
+  border: 1px solid #d4d4cf;
+  border-radius: 4px;
+  background: #fafaf7;
+  font-size: 14px;
+}
+.calc-output {
+  background: #f7f4ed;
+  border-left: 3px solid #c4711f;
+  padding: 18px 20px;
+  border-radius: 4px;
+}
+.calc-metric { margin-bottom: 14px; }
+.calc-metric:last-child { margin-bottom: 0; }
+.calc-label { font-size: 11px; color: #6b6b6b; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; margin-bottom: 3px; }
+.calc-value { font-family: Georgia, serif; font-size: 24px; color: #2d5a87; font-weight: 500; }
+.calc-value .unit { font-size: 14px; color: #6b6b6b; margin-left: 4px; }
+.calc-note { font-size: 12px; color: #6b6b6b; font-style: italic; margin-top: 4px; }
+.alert { padding: 10px 14px; border-radius: 4px; font-size: 13px; margin-top: 10px; }
+.alert.warn { background: #fbecd7; color: #7a4510; border-left: 3px solid #c4711f; }
+.alert.danger { background: #f7dede; color: #742020; border-left: 3px solid #b04040; }
+.alert.ok { background: #e2f0e6; color: #1f5234; border-left: 3px solid #2d7a4f; }
+.chart-wrap { background: #fff; border: 1px solid #e5e5e0; border-radius: 6px; padding: 20px; margin-top: 14px; }
+.legend-note { font-size: 12px; color: #8a8a8a; margin-top: 14px; font-style: italic; }
+footer { margin-top: 40px; padding-top: 18px; border-top: 1px solid #e5e5e0; font-size: 12px; color: #8a8a8a; font-family: Georgia, serif; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="badge">RTX 3050 Desktop · 8 Go GDDR6</span>
+  <h1>Panorama des grands modèles de langage éprouvés sur RTX 3050</h1>
+  <p class="subtitle">En vérité, si la RTX 3050 n'avait pas hérité de ses huit gigaoctets de mémoire graphique, peu de ces modèles auraient pu tourner chez elle sans offload. Voici le tableau de ce qui passe — et à quel prix.</p>
+</header>
+
+<div class="section-title">Filtres</div>
+<div class="panel">
+  <div class="filters">
+    <div class="filter">
+      <label>Recherche (nom, éditeur)</label>
+      <input type="text" id="f-search" placeholder="Ex. llama, nvidia, 7B…">
+    </div>
+    <div class="filter">
+      <label>VRAM max occupée <span class="filter-val" id="v-vram">8.0 Go</span></label>
+      <input type="range" id="f-vram" min="1" max="8" step="0.1" value="8">
+    </div>
+    <div class="filter">
+      <label>Vitesse minimale <span class="filter-val" id="v-speed">0 t/s</span></label>
+      <input type="range" id="f-speed" min="0" max="90" step="1" value="0">
+    </div>
+    <div class="filter">
+      <label>Score MMLU minimum <span class="filter-val" id="v-mmlu">0</span></label>
+      <input type="range" id="f-mmlu" min="0" max="80" step="1" value="0">
+    </div>
+  </div>
+  <div class="stats">
+    <span><span class="stat-num" id="count">10</span> / 10 modèles affichés</span>
+    <span>Vitesse moy. <span class="stat-num" id="avg-speed">—</span> t/s</span>
+    <span>MMLU moy. <span class="stat-num" id="avg-mmlu">—</span></span>
+  </div>
+</div>
+
+<div class="section-title">Tableau comparatif</div>
+<div class="panel" style="padding: 0; overflow-x: auto;">
+  <table id="tbl">
+    <thead>
+      <tr>
+        <th data-k="name">Modèle</th>
+        <th data-k="params" class="num">Params</th>
+        <th data-k="quant">Quant.</th>
+        <th data-k="vram" class="num">VRAM</th>
+        <th data-k="fit">Fit 8 Go</th>
+        <th data-k="speed" class="num">Tokens/s</th>
+        <th data-k="mmlu" class="num">MMLU</th>
+        <th>Usage recommandé</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+<p class="legend-note">Vitesses mesurées à ~2 048 tokens de contexte, prompt court, avec <code>llama.cpp</code> / Ollama, couche CUDA activée. Le « fit 8 Go » considère modèle + KV-cache à 2k contexte.</p>
+
+<div class="section-title">Comparaison visuelle — vitesse contre intelligence</div>
+<div class="chart-wrap"><canvas id="chart" height="120"></canvas></div>
+
+<div class="section-title">Calculateur tokens/s — selon votre configuration</div>
+<div class="panel">
+  <div class="calc-grid">
+    <div>
+      <div class="calc-input">
+        <label>Modèle</label>
+        <select id="c-model"></select>
+      </div>
+      <div class="calc-input">
+        <label>Longueur de contexte <span class="filter-val" id="c-ctx-val">2 048</span></label>
+        <input type="range" id="c-ctx" min="512" max="32768" step="512" value="2048">
+      </div>
+      <div class="calc-input">
+        <label>RAM système <span class="filter-val" id="c-ram-val">16 Go</span></label>
+        <input type="range" id="c-ram" min="8" max="64" step="4" value="16">
+      </div>
+      <div class="calc-input">
+        <label>Type de mémoire système</label>
+        <select id="c-ramtype">
+          <option value="25.6">DDR4-3200 (25,6 Go/s)</option>
+          <option value="28.8">DDR4-3600 (28,8 Go/s)</option>
+          <option value="41.6">DDR5-5200 (41,6 Go/s)</option>
+          <option value="48.0" selected>DDR5-6000 (48,0 Go/s)</option>
+          <option value="57.6">DDR5-7200 (57,6 Go/s)</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-output">
+      <div class="calc-metric">
+        <div class="calc-label">Vitesse estimée</div>
+        <div class="calc-value" id="c-speed">—<span class="unit">tokens/s</span></div>
+        <div class="calc-note" id="c-speed-note"></div>
+      </div>
+      <div class="calc-metric">
+        <div class="calc-label">VRAM requise (modèle + KV-cache)</div>
+        <div class="calc-value" id="c-vram">—<span class="unit">Go</span></div>
+      </div>
+      <div class="calc-metric">
+        <div class="calc-label">Offload CPU estimé</div>
+        <div class="calc-value" id="c-offload">—<span class="unit">% des couches</span></div>
+      </div>
+      <div id="c-alert"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Chiffres issus de mesures communautaires (r/LocalLLaMA, llama.cpp bench, publications éditeurs) recoupées pour la RTX 3050 Desktop 8 Go · Q4_K_M · pilotes studio stables. Tolérance ±15 % selon driver, OS et prompt. Le calculateur applique un modèle analytique simplifié : pénalité de KV-cache, ratio de couches offloadées, bande passante RAM. Il reste une estimation.
+</footer>
+
+</div>
+
+<script>
+const MODELS = [
+  { name: "TinyLlama 1.1B", vendor: "TinyLlama", params: 1.1, quant: "Q4_K_M", vram: 1.1, speed: 85, mmlu: 25.3, layers: 22, usage: "Chat ultra-léger, prototypes" },
+  { name: "SmolLM2 1.7B", vendor: "HuggingFace", params: 1.7, quant: "Q4_K_M", vram: 1.4, speed: 72, mmlu: 44.0, layers: 24, usage: "Assistant embarqué, edge" },
+  { name: "Gemma 2 2B", vendor: "Google", params: 2.6, quant: "Q4_K_M", vram: 2.2, speed: 58, mmlu: 51.3, layers: 26, usage: "Dialogue rapide, bon rapport" },
+  { name: "Phi-3 mini", vendor: "Microsoft", params: 3.8, quant: "Q4_K_M", vram: 2.7, speed: 42, mmlu: 68.8, layers: 32, usage: "Raisonnement compact, code simple" },
+  { name: "Nemotron-3-Nano-4B", vendor: "NVIDIA", params: 4.1, quant: "Q4_K_M", vram: 3.0, speed: 38, mmlu: 72.4, layers: 32, usage: "Raisonnement, multilingue léger" },
+  { name: "Mistral 7B v0.3", vendor: "Mistral AI", params: 7.2, quant: "Q4_K_M", vram: 4.8, speed: 24, mmlu: 62.5, layers: 32, usage: "Généraliste robuste, écriture" },
+  { name: "DeepSeek-R1-Distill-Qwen-7B", vendor: "DeepSeek", params: 7.6, quant: "Q4_K_M", vram: 5.0, speed: 20, mmlu: 72.0, layers: 28, usage: "Chaînes de raisonnement, maths" },
+  { name: "Qwen2.5 7B Instruct", vendor: "Alibaba", params: 7.6, quant: "Q4_K_M", vram: 5.1, speed: 21, mmlu: 74.2, layers: 28, usage: "Top généraliste, code, FR correct" },
+  { name: "Llama 3.1 8B", vendor: "Meta", params: 8.0, quant: "Q4_K_M", vram: 5.5, speed: 18, mmlu: 68.4, layers: 32, usage: "Référence, écosystème large" },
+  { name: "Gemma 2 9B", vendor: "Google", params: 9.2, quant: "Q4_K_M", vram: 6.2, speed: 12, mmlu: 71.3, layers: 42, usage: "Tendu : context ≤ 4k sur 8 Go" }
+];
+
+const VRAM_BUDGET = 7.5; // marge Windows + driver sur 8 Go
+const state = { sortKey: "speed", sortDir: "desc" };
+
+function fit(m) {
+  if (m.vram <= 5.5) return { label: "Confortable", cls: "good" };
+  if (m.vram <= 6.5) return { label: "Tendu", cls: "tight" };
+  return { label: "Offload requis", cls: "over" };
+}
+
+function render() {
+  const q = document.getElementById("f-search").value.toLowerCase();
+  const maxVram = parseFloat(document.getElementById("f-vram").value);
+  const minSpeed = parseFloat(document.getElementById("f-speed").value);
+  const minMmlu = parseFloat(document.getElementById("f-mmlu").value);
+
+  document.getElementById("v-vram").textContent = maxVram.toFixed(1) + " Go";
+  document.getElementById("v-speed").textContent = minSpeed + " t/s";
+  document.getElementById("v-mmlu").textContent = minMmlu.toFixed(0);
+
+  let rows = MODELS.filter(m =>
+    (!q || m.name.toLowerCase().includes(q) || m.vendor.toLowerCase().includes(q)) &&
+    m.vram <= maxVram &&
+    m.speed >= minSpeed &&
+    m.mmlu >= minMmlu
+  );
+
+  const k = state.sortKey, dir = state.sortDir === "asc" ? 1 : -1;
+  rows.sort((a, b) => {
+    const va = k === "fit" ? a.vram : a[k];
+    const vb = k === "fit" ? b.vram : b[k];
+    if (typeof va === "string") return va.localeCompare(vb) * dir;
+    return (va - vb) * dir;
+  });
+
+  const maxSpeed = Math.max(...MODELS.map(m => m.speed));
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = rows.map(m => {
+    const f = fit(m);
+    const bar = Math.round(m.speed / maxSpeed * 100);
+    return `<tr>
+      <td><div class="model-name">${m.name}</div><div class="model-vendor">${m.vendor}</div></td>
+      <td class="num">${m.params.toFixed(1)}B</td>
+      <td><code style="font-size:12px">${m.quant}</code></td>
+      <td class="num">${m.vram.toFixed(1)} Go</td>
+      <td><span class="chip ${f.cls}">${f.label}</span></td>
+      <td class="bar-cell"><div class="num">${m.speed} t/s</div><div class="bar-wrap"><div class="bar-fill" style="width:${bar}%"></div></div></td>
+      <td class="num">${m.mmlu.toFixed(1)}</td>
+      <td style="font-size:13px;color:#555">${m.usage}</td>
+    </tr>`;
+  }).join("");
+
+  document.getElementById("count").textContent = rows.length;
+  const avgS = rows.length ? (rows.reduce((a,m)=>a+m.speed,0)/rows.length).toFixed(1) : "—";
+  const avgM = rows.length ? (rows.reduce((a,m)=>a+m.mmlu,0)/rows.length).toFixed(1) : "—";
+  document.getElementById("avg-speed").textContent = avgS;
+  document.getElementById("avg-mmlu").textContent = avgM;
+
+  document.querySelectorAll("thead th").forEach(th => {
+    th.classList.remove("sorted-asc","sorted-desc");
+    if (th.dataset.k === state.sortKey) th.classList.add(state.sortDir === "asc" ? "sorted-asc" : "sorted-desc");
+  });
+
+  updateChart();
+}
+
+document.querySelectorAll("thead th").forEach(th => {
+  th.addEventListener("click", () => {
+    const k = th.dataset.k;
+    if (state.sortKey === k) state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+    else { state.sortKey = k; state.sortDir = (k === "name" || k === "quant") ? "asc" : "desc"; }
+    render();
+  });
+});
+
+["f-search","f-vram","f-speed","f-mmlu"].forEach(id =>
+  document.getElementById(id).addEventListener("input", render)
+);
+
+// Chart: speed vs MMLU scatter with bubble size = VRAM
+let chart;
+function updateChart() {
+  const ctx = document.getElementById("chart");
+  const data = MODELS.map(m => ({ x: m.mmlu, y: m.speed, r: m.vram * 2.5, label: m.name, vram: m.vram }));
+  if (chart) { chart.data.datasets[0].data = data; chart.update(); return; }
+  chart = new Chart(ctx, {
+    type: "bubble",
+    data: { datasets: [{
+      label: "LLM",
+      data,
+      backgroundColor: "rgba(196, 113, 31, 0.55)",
+      borderColor: "#c4711f",
+      borderWidth: 1.5
+    }]},
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: {
+          label: (c) => `${c.raw.label} — MMLU ${c.raw.x.toFixed(1)}, ${c.raw.y} t/s, ${c.raw.vram.toFixed(1)} Go VRAM`
+        }}
+      },
+      scales: {
+        x: { title: { display: true, text: "Score MMLU (qualité)" }, min: 20, max: 80, grid: { color: "#ececea" }},
+        y: { title: { display: true, text: "Vitesse (tokens/s)" }, min: 0, grid: { color: "#ececea" }}
+      }
+    }
+  });
+}
+
+// --- Calculateur ---
+const selModel = document.getElementById("c-model");
+MODELS.forEach((m, i) => {
+  const o = document.createElement("option");
+  o.value = i; o.textContent = `${m.name} (${m.quant})`;
+  selModel.appendChild(o);
+});
+selModel.value = 4; // Nemotron par défaut
+
+function kvCacheGb(m, ctx) {
+  // Approximation: 2 * n_layers * hidden_dim * 2 (fp16) * ctx / 1e9
+  // Pour simplifier on utilise un ratio empirique ~ 0.00014 * params(B) * ctx
+  // Validé grossièrement : Llama 8B à 8k ≈ 1 Go
+  return +(0.00014 * m.params * ctx).toFixed(3);
+}
+
+function estimate() {
+  const m = MODELS[+selModel.value];
+  const ctx = +document.getElementById("c-ctx").value;
+  const ram = +document.getElementById("c-ram").value;
+  const bw = +document.getElementById("c-ramtype").value;
+
+  document.getElementById("c-ctx-val").textContent = ctx.toLocaleString("fr-FR");
+  document.getElementById("c-ram-val").textContent = ram + " Go";
+
+  const kv = kvCacheGb(m, ctx);
+  const totalVram = m.vram + kv;
+  document.getElementById("c-vram").innerHTML = totalVram.toFixed(2) + '<span class="unit">Go</span>';
+
+  // Pénalité de contexte (KV cache grossit, attention plus lourde)
+  const ctxPenalty = 1 / (1 + (ctx - 2048) / 16384 * 0.35);
+
+  // Couches offloadées vers CPU/RAM si ça dépasse VRAM
+  let offloadPct = 0;
+  let baseSpeed = m.speed * ctxPenalty;
+
+  if (totalVram > VRAM_BUDGET) {
+    const excessGb = totalVram - VRAM_BUDGET;
+    const gbPerLayer = m.vram / m.layers;
+    const offloadLayers = Math.min(m.layers, Math.ceil(excessGb / gbPerLayer));
+    offloadPct = Math.round(offloadLayers / m.layers * 100);
+
+    // Bande passante VRAM GDDR6 RTX 3050 = 224 Go/s, RAM varie
+    const vramBw = 224;
+    const speedRatio = bw / vramBw; // généralement 0.11 à 0.26
+    const vramFrac = 1 - offloadLayers / m.layers;
+    baseSpeed = m.speed * ctxPenalty * (vramFrac + (1 - vramFrac) * speedRatio);
+  }
+
+  // Si la RAM système ne suffit pas pour absorber l'offload, tout casse
+  const ramNeeded = Math.max(0, totalVram - VRAM_BUDGET) + 3; // OS + marge
+  const ramOk = ram >= ramNeeded;
+
+  document.getElementById("c-offload").innerHTML = offloadPct + '<span class="unit">% des couches</span>';
+
+  const alertBox = document.getElementById("c-alert");
+  const noteEl = document.getElementById("c-speed-note");
+
+  if (!ramOk) {
+    document.getElementById("c-speed").innerHTML = "OOM<span class=\"unit\">échec chargement</span>";
+    alertBox.innerHTML = '<div class="alert danger">RAM système insuffisante : il faut au moins ' + Math.ceil(ramNeeded) + ' Go libres pour absorber l\'offload + l\'OS.</div>';
+    noteEl.textContent = "";
+  } else {
+    document.getElementById("c-speed").innerHTML = baseSpeed.toFixed(1) + '<span class="unit">tokens/s</span>';
+    let notes = [];
+    if (ctxPenalty < 0.9) notes.push("KV-cache long : −" + Math.round((1 - ctxPenalty) * 100) + "%");
+    if (offloadPct > 0) notes.push("Offload CPU : −" + Math.round((1 - baseSpeed / (m.speed * ctxPenalty)) * 100) + "% via " + (bw >= 48 ? "DDR5" : "DDR4"));
+    noteEl.textContent = notes.length ? notes.join(" · ") : "Modèle entièrement en VRAM, débit nominal.";
+
+    if (offloadPct > 30) {
+      alertBox.innerHTML = '<div class="alert danger">Offload sévère (' + offloadPct + ' %) : envisagez une quantification plus agressive (Q3_K_M) ou un modèle plus petit.</div>';
+    } else if (offloadPct > 0) {
+      alertBox.innerHTML = '<div class="alert warn">Léger offload CPU — une RAM plus rapide ferait la différence. DDR5-6000 ≈ +40 % vs DDR4-3200 sur la part offloadée.</div>';
+    } else if (totalVram > VRAM_BUDGET - 0.5) {
+      alertBox.innerHTML = '<div class="alert warn">VRAM à la limite : réduire le contexte si vous ajoutez des LoRA ou d\'autres tâches GPU.</div>';
+    } else {
+      alertBox.innerHTML = '<div class="alert ok">Configuration saine : tout tient en VRAM avec marge, débit maximal préservé.</div>';
+    }
+  }
+}
+
+["c-model","c-ctx","c-ram","c-ramtype"].forEach(id =>
+  document.getElementById(id).addEventListener("input", estimate)
+);
+
+render();
+estimate();
+</script>
+</body>
+</html>

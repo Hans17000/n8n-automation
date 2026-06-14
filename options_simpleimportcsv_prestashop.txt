@@ -1,0 +1,47 @@
+Informations :
+Nom du produit,Reference,Code-barres EAN-13 ou JAN,Code-barres UPC,ISBN,MPN,Date d'ajout,Active,Visibilite,Disponible a la commande,Afficher le prix,exclusivite web (non vendu en magasin),Afficher l'etat,Etat,Resume,Description,Mot-cles (x.y,z ... )
+
+Prix :
+Prix d'achat HT,Prix de vente HT,Methode d'importation des taxes,Tax rule,Eco-participation (TTC),Prix de vente TTC,Prix unitaire (HT),Prix unitaire par),Afficher un bandeau "Promo!"
+
+Référencement SEO :
+Balise titre,Meta mots-cles,Meta description,URL simplifiee
+
+Associations :
+Remove category associations,Methode d'importation de categorie,Categorie par defaut,Categories associees,Lier les categories du fichier aux categories de magasin existantes,Methode d'importation de marque,Nom de marque,A des produits connexes,Supprimer les produits associes actuels,Identifiant de produit associe,Type d'identifiant,Delimiteur d'identifiant
+
+Livraisons :
+Largeur du colis,Hauteur du colis,Profondeur du colis,Poids du colis,Frais de port supplementaires (par unite),Delai de livraison,Delai de livraison pour les produits en stock :,Delai de livraison des produits epuises avec commande autorisee:,ID des transporteurs de produits
+
+Déclinaisons :
+Remove all current product combinations,Combination identification key,Methode d'importation d'une combinaison de produits,Attribut,Type,Valeur,Reference,Code-barres EAN-13 ou JAN,Code-barres UPC,ISBN,MPN,Prix d'achat,Prix final (HT),Prix final (TTC),Impact sur le prix (HT),Impact sur le prix (TTC),Impact on price per unit (tax excl.),Impact sur le poids (montant),Eco-participation (HT),Quantite minimale,Date de disponibilite,Entrepot,Emplacement de l'entrepot,Quantity Import Method,Quantite,Emplacement du stock,Niveau de stock bas,Alerte email,Combinaison par defaut,Images de la combinaison de produits,Combination images caption,Methode d'importation des fournisseurs,Nom du fournisseur,Reference fournisseur,Prix fournisseur,Monnaie du fournisseur
+
+Quantités :
+Gestion des stocks avancee,En fonction du stock,Entrepot,Emplacement de l'entrepot,Quantity Import Method,Quantite,Emplacement du stock,Niveau de stock bas,Allerte emaill,Behavior when out of stock,Quantite minimale,Message si produit en stock,Message si produit en rupture de stock mais precommande autorisee,Date de disponibilite
+
+Prodult dematerialise
+URL du fichier,Nombre de telechargements autorises,Date d'expiration,Nombre de jours
+
+Images
+Supprimer les images actuelles,Generer des miniatures,Import just for products without images,L'importation d'images en quelques etapes,Liens vers les images,Legende des images
+
+Caractéristiques
+Supprimer les fonctionnalites actuelles,Features Name Import Method,Feature name,Features Value Import Method,Signification de la caracteristique,Multiple Feature Values,Type de signification
+
+Fournisseurs
+Remove supplier associations,Methode d'importation des fournisseurs,Nom du fournisseur par defaut.,Nom du fournisseur,Reference fournisseur,Prix fournisseur,Monnaie du fournisseur
+
+Personnalisation
+Supprimer les champs de personnalisation actuels,Personnalisation des valeurs de champ dans une colonne,Type de champ,Etiquette de champ,Requis
+
+Documents Joints
+Supprimer les pieces jointes actuelles,Importer des pieces jointes a partir d'une colonne,Nom du fichier,Description,URL du fichier
+
+Pack de produits
+Supprimer la liste actuelle des produits de Pack,Liste des produits de Pack,Quantite de produits de Pack,Type d'identifiant,Delimiteur d'identifiant
+
+Parametres additionnels
+
+
+Import Conditions
+Desactiver les produits avec une quantite nulle,Nouveaux produits,Produits existants,Products in store but not in the file,Products in store and in the file,Skip product from import,Remove the product from store,Importer uniquement a partir de categories,Importer juste des fournisseurs,Importer juste des marques

@@ -1,0 +1,29 @@
+<!-- @dsCard group="Brand" viewport="700x130" subtitle="Filet doré avec motif central — séparateur de sections" name="Séparateur" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; background: var(--surface-page); display: flex; flex-direction: column; justify-content: center; gap: 26px; min-height: 130px; padding: 0 60px; }
+  .sep { display: flex; align-items: center; gap: 16px; }
+  .sep .line { flex: 1; height: 1px; background: var(--color-border); }
+  .sep .motif { font-family: var(--font-serif-display); font-size: 16px; color: var(--color-accent); line-height: 1; }
+  .dark { background: var(--color-primary); margin: 0 -60px; padding: 20px 60px; }
+</style>
+</head>
+<body>
+  <div class="sep">
+    <div class="line"></div>
+    <span class="motif">I</span>
+    <div class="line"></div>
+  </div>
+  <div class="dark">
+    <div class="sep">
+      <div class="line"></div>
+      <span class="motif">❦</span>
+      <div class="line"></div>
+    </div>
+  </div>
+</body>
+</html>

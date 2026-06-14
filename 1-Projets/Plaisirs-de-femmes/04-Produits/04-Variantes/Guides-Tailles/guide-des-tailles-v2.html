@@ -1,0 +1,246 @@
+<!-- ============================================================
+     PLAISIRS DE FEMMES — PAGE CMS « Guide des tailles » (v2)
+     ------------------------------------------------------------
+     Remplace la v1. À coller dans Apparence → Pages → éditeur,
+     en mode CODE / SOURCE (icône "</>").
+
+     Structure : méthode de mesure (universelle) + un volet
+     dépliable par marque. Les volets utilisent <details>/<summary>
+     (natif, sans JavaScript, fonctionne en page CMS).
+
+     Données transcrites depuis les chartes fournisseur (Tendance
+     Sensuelle). Vérifie une dernière fois avant publication, et
+     ajoute/retire un volet si ton catalogue évolue.
+     ============================================================ -->
+
+<style>
+.pdf-guide{--or-rose:#C68B7C;--bordeaux:#6B2D3E;--or:#C2A06B;--creme:#FAF5F0;--surface:#16100F;
+  max-width:1120px;margin:0 auto;padding:10px 20px 60px;color:var(--creme);
+  font-family:'Raleway',sans-serif;line-height:1.7;}
+.pdf-guide h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(34px,6vw,56px);text-align:center;margin:10px 0 6px;}
+.pdf-guide .pdf-eyebrow{display:block;text-align:center;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--or-rose);margin-bottom:6px;}
+.pdf-guide .pdf-intro{text-align:center;max-width:640px;margin:0 auto 46px;color:#E9DED7;}
+.pdf-guide h2{font-family:'Playfair Display',serif;font-weight:400;font-size:26px;margin:48px 0 8px;}
+.pdf-guide h2 .pdf-num{color:var(--or-rose);font-style:italic;margin-right:10px;}
+.pdf-guide .pdf-rule{width:60px;height:1px;background:var(--or-rose);margin:0 0 24px;}
+
+.pdf-mesures{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px;}
+.pdf-mesure{background:rgba(255,255,255,.03);border:1px solid rgba(198,139,124,.25);
+  border-radius:10px;padding:20px 22px;}
+.pdf-mesure h3{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:19px;color:var(--or-rose);margin:0 0 6px;}
+.pdf-mesure p{margin:0;font-size:14px;color:#E2D6CF;}
+
+.pdf-note{background:rgba(107,45,62,.18);border-left:3px solid var(--bordeaux);
+  padding:12px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#EAD9D2;margin:14px 0 26px;}
+
+/* Accordéon par marque */
+.pdf-grilles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;}
+.pdf-brand{border:1px solid rgba(198,139,124,.25);border-radius:10px;margin-bottom:0;
+  overflow:hidden;background:rgba(255,255,255,.02);}
+.pdf-brand summary{cursor:pointer;list-style:none;padding:16px 22px;font-family:'Playfair Display',serif;
+  font-size:20px;color:var(--creme);display:flex;align-items:center;justify-content:space-between;}
+.pdf-brand summary::-webkit-details-marker{display:none;}
+.pdf-brand summary::after{content:'+';color:var(--or-rose);font-size:24px;line-height:1;}
+.pdf-brand[open] summary::after{content:'–';}
+.pdf-brand summary:hover{color:var(--or-rose);}
+.pdf-brand .pdf-body{padding:0 22px 22px;}
+.pdf-brand .pdf-tag{font-size:12px;color:#B7A79F;font-style:italic;margin:0 0 12px;}
+
+.pdf-table-wrap{overflow-x:auto;}
+.pdf-guide table{width:100%;border-collapse:collapse;font-size:13px;min-width:480px;}
+.pdf-guide thead th{background:var(--bordeaux);color:var(--creme);font-weight:600;
+  padding:10px 12px;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.04em;}
+.pdf-guide tbody td{padding:9px 12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07);
+  color:#E9DED7;}
+.pdf-guide tbody tr:nth-child(even){background:rgba(255,255,255,.02);}
+.pdf-guide tbody td:first-child{font-family:'Playfair Display',serif;font-style:italic;
+  color:var(--or-rose);text-align:left;}
+
+.pdf-aide{text-align:center;margin-top:54px;padding:30px;border:1px solid rgba(198,139,124,.3);
+  border-radius:12px;background:rgba(255,255,255,.02);}
+.pdf-aide p{margin:0 0 16px;color:#E9DED7;}
+.pdf-aide a{display:inline-block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--or-rose);border:1px solid var(--or-rose);border-radius:2px;padding:11px 30px;
+  text-decoration:none;transition:all .35s ease;}
+.pdf-aide a:hover{background:var(--or-rose);color:#0D0D0D;}
+
+@media(max-width:920px){.pdf-grilles{grid-template-columns:1fr;}}
+@media(max-width:680px){.pdf-mesures{grid-template-columns:1fr;}}
+</style>
+
+<div class="pdf-guide">
+
+  <span class="pdf-eyebrow">Trouver sa taille, sereinement</span>
+  <h1>Le guide des tailles</h1>
+  <p class="pdf-intro">Chez Plaisirs de Femmes, l'élégance n'a pas de taille unique. Chaque maison
+  taille à sa façon&nbsp;: prenez d'abord vos mesures, puis ouvrez le volet de la marque qui vous
+  intéresse pour y lire sa grille exacte. En cas d'entre-deux, choisissez la taille au-dessus.</p>
+
+  <!-- 1. COMMENT SE MESURER -->
+  <h2><span class="pdf-num">01</span>Comment prendre ses propres mesures</h2>
+  <div class="pdf-rule"></div>
+  <p style="margin-top:0;color:#E2D6CF;">Un mètre ruban souple, debout, détendue, en sous-vêtements
+  fins. Le ruban épouse le corps sans serrer ni bâiller.</p>
+  <div class="pdf-mesures">
+    <div class="pdf-mesure"><h3>Tour de poitrine</h3><p>À l'endroit le plus fort de la poitrine, ruban horizontal dans le dos.</p></div>
+    <div class="pdf-mesure"><h3>Tour sous-poitrine</h3><p>Juste sous la poitrine&nbsp;: c'est lui qui donne la base du soutien-gorge.</p></div>
+    <div class="pdf-mesure"><h3>Tour de taille</h3><p>À l'endroit le plus creux du buste, au-dessus du nombril.</p></div>
+    <div class="pdf-mesure"><h3>Tour de hanches</h3><p>À l'endroit le plus fort des hanches et du fessier, jambes serrées.</p></div>
+  </div>
+
+  <!-- 2. GRILLES PAR MARQUE -->
+  <h2><span class="pdf-num">02</span>Les grilles, marque par marque</h2>
+  <div class="pdf-rule"></div>
+  <div class="pdf-note"><strong>Important&nbsp;:</strong> mesures en centimètres. Chaque marque a son
+  propre système&nbsp;— fiez-vous toujours au volet de la marque indiquée sur la fiche du produit.</div>
+
+  <div class="pdf-grilles">
+  <!-- OBSESSIVE -->
+  <details class="pdf-brand">
+    <summary>Obsessive</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Tailles groupées (XS/S, M/L, XL/2XL).</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th>Taille</th><th>EU</th><th>UK</th><th>IT</th><th>FR</th></tr></thead>
+        <tbody>
+          <tr><td>XS/S</td><td>34-36</td><td>6-8</td><td>40-42</td><td>36-38</td></tr>
+          <tr><td>M/L</td><td>38-40</td><td>10-12</td><td>44-46</td><td>40-42</td></tr>
+          <tr><td>XL/2XL</td><td>42-44</td><td>14-16</td><td>48-50</td><td>44-46</td></tr>
+        </tbody>
+      </table></div>
+      <p class="pdf-tag" style="margin-top:14px;">Mensurations (ensembles de lingerie, cm)&nbsp;:</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th></th><th>XS/S</th><th>M/L</th><th>XL/2XL</th></tr></thead>
+        <tbody>
+          <tr><td>Sous-poitrine</td><td>67-73</td><td>74-80</td><td>81-90</td></tr>
+          <tr><td>Poitrine</td><td>80-89</td><td>90-99</td><td>100-109</td></tr>
+          <tr><td>Taille</td><td>64-73</td><td>74-83</td><td>84-93</td></tr>
+          <tr><td>Hanches</td><td>84-94</td><td>95-105</td><td>106-116</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- NOIR HANDMADE -->
+  <details class="pdf-brand">
+    <summary>Noir Handmade</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Tailles simples, du S au 6XL.</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th>Taille</th><th>EUR</th><th>UK</th><th>Poitrine</th><th>Taille</th><th>Hanches</th></tr></thead>
+        <tbody>
+          <tr><td>S</td><td>36</td><td>8</td><td>86-89</td><td>65-68</td><td>92-95</td></tr>
+          <tr><td>M</td><td>38</td><td>10</td><td>90-93</td><td>69-72</td><td>96-99</td></tr>
+          <tr><td>L</td><td>40</td><td>12</td><td>94-97</td><td>73-76</td><td>100-103</td></tr>
+          <tr><td>XL</td><td>42</td><td>14</td><td>98-101</td><td>77-80</td><td>104-107</td></tr>
+          <tr><td>XXL</td><td>44</td><td>16</td><td>102-105</td><td>81-84</td><td>108-111</td></tr>
+          <tr><td>3XL</td><td>46</td><td>18</td><td>106-109</td><td>85-88</td><td>112-115</td></tr>
+          <tr><td>4XL</td><td>48</td><td>20</td><td>110-113</td><td>86-89</td><td>116-119</td></tr>
+          <tr><td>5XL</td><td>50</td><td>22</td><td>114-117</td><td>90-93</td><td>120-123</td></tr>
+          <tr><td>6XL</td><td>52</td><td>24</td><td>118-121</td><td>94-97</td><td>124-127</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- PENTHOUSE -->
+  <details class="pdf-brand">
+    <summary>Penthouse Lingerie</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Tailles groupées + une « taille unique » (S-L).</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th></th><th>S/M</th><th>M/L</th><th>L/XL</th><th>XL</th><th>Unique (S-L)</th></tr></thead>
+        <tbody>
+          <tr><td>Bonnet</td><td>A/B</td><td>B/C</td><td>C/D</td><td>D/DD</td><td>B/C</td></tr>
+          <tr><td>Poitrine</td><td>82-90</td><td>91-97</td><td>95-110</td><td>98-110</td><td>82-98</td></tr>
+          <tr><td>Dos</td><td>61-75</td><td>70-85</td><td>75-90</td><td>85-95</td><td>61-85</td></tr>
+          <tr><td>Taille</td><td>59-75</td><td>71-81</td><td>75-91</td><td>82-92</td><td>60-82</td></tr>
+          <tr><td>Hanches</td><td>88-100</td><td>97-102</td><td>97-118</td><td>103-118</td><td>88-102</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- PASSION -->
+  <details class="pdf-brand">
+    <summary>Passion</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Trois paliers (S-M, L-XL, XXL-XXXL).</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th></th><th>S-M</th><th>L-XL</th><th>XXL-XXXL</th></tr></thead>
+        <tbody>
+          <tr><td>Tour de taille</td><td>60-72</td><td>72-84</td><td>84-96</td></tr>
+          <tr><td>Tour de hanches</td><td>88-100</td><td>100-112</td><td>112-124</td></tr>
+          <tr><td>Bonnet</td><td>A-C</td><td>B-D</td><td>C-E</td></tr>
+          <tr><td>Stature</td><td>158-164</td><td>164-170</td><td>170-172</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- BEAUTY NIGHT -->
+  <details class="pdf-brand">
+    <summary>Beauty Night</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Deux paliers (S/M, L/XL). Concordance&nbsp;: 36/38 et 40/42.</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th></th><th>S/M</th><th>L/XL</th></tr></thead>
+        <tbody>
+          <tr><td>Buste</td><td>81-91</td><td>91-107</td></tr>
+          <tr><td>Bonnet</td><td>B-C</td><td>C-D</td></tr>
+          <tr><td>Taille</td><td>56-71</td><td>71-91</td></tr>
+          <tr><td>Hanches</td><td>85-97</td><td>97-112</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <!-- AXAMI -->
+  <details class="pdf-brand">
+    <summary>Axami</summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Sizing soutien-gorge&nbsp;: la base se lit sur le tour sous-poitrine,
+      le bonnet sur l'écart poitrine / sous-poitrine (A à J).</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th>Sous-poitrine</th><th>63-67</th><th>68-72</th><th>73-77</th><th>78-82</th><th>83-87</th><th>88-92</th><th>93-97</th></tr></thead>
+        <tbody>
+          <tr><td>EU</td><td>65</td><td>70</td><td>75</td><td>80</td><td>85</td><td>90</td><td>95</td></tr>
+          <tr><td>FR</td><td>80</td><td>85</td><td>90</td><td>95</td><td>100</td><td>105</td><td>110</td></tr>
+          <tr><td>USA/UK</td><td>30</td><td>32</td><td>34</td><td>36</td><td>38</td><td>40</td><td>42</td></tr>
+        </tbody>
+      </table></div>
+      <p class="pdf-tag" style="margin-top:12px;">Pour le bonnet&nbsp;: mesurez votre tour de poitrine,
+      retranchez votre tour sous-poitrine, et reportez l'écart aux bonnets A→J de la charte Axami.</p>
+    </div>
+  </details>
+
+  <!-- FIORE -->
+  <details class="pdf-brand">
+    <summary>Fiore <span style="font-size:13px;color:#B7A79F;font-family:Raleway;font-style:italic;">— bas & collants</span></summary>
+    <div class="pdf-body">
+      <p class="pdf-tag">Bas autofixants&nbsp;: selon la pointure et la longueur de jambe.</p>
+      <div class="pdf-table-wrap"><table>
+        <thead><tr><th></th><th>2-S</th><th>3-M</th><th>4-L</th></tr></thead>
+        <tbody>
+          <tr><td>Pieds</td><td>23/24 cm</td><td>25/26 cm</td><td>27/28 cm</td></tr>
+          <tr><td>Jambes</td><td>70/72 cm</td><td>74/78 cm</td><td>80/82 cm</td></tr>
+        </tbody>
+      </table></div>
+      <p class="pdf-tag" style="margin-top:12px;">Collants&nbsp;: la taille (1 à 5) se lit en croisant
+      votre <strong>poids</strong> (de 50 à 95 kg) et votre <strong>stature</strong> (de 152 à 180 cm),
+      pour un tour de hanches de 92 à 128 cm.</p>
+    </div>
+  </details>
+  </div>
+
+  <!-- AIDE -->
+  <div class="pdf-aide">
+    <p>Un doute, un entre-deux, une question sur une pièce précise&nbsp;?<br>
+    Écrivez-nous&nbsp;: nous vous guidons vers la taille juste, sans engagement.</p>
+    <a href="/contact">Demander conseil</a>
+  </div>
+
+</div>

@@ -1,0 +1,639 @@
+What is REST API?
+REST API is a set of rules and protocols that enable communication between different information systems. It is a tool for developers and integrators who want to integrate their systems with our wholesale in an automated way. Thanks to the API, you can, for example, retrieve product data, place orders, manage orders, or update inventory statuses.
+
+Difference between API and Plugin
+It's worth noting that an API is not the same as a plugin. An API is a tool for developers who want to build their own personalized solutions. A plugin, on the other hand, is a ready-made component that can be installed in an existing system without the need for additional coding. If you are looking for a ready-made plugin for your ecommerce system for integration with our wholesale, visit our Integration with Matterhorn page.
+
+
+Matterhorn REST API: Features and Capabilities
+Our REST API has been designed to integrate various systems with our wholesale. Thanks to it, you can efficiently manage various aspects of cooperation, such as:
+Retrieving detailed data on products available in the wholesale,
+Receiving a list of brands and categories, as well as available shipping methods and costs,
+Placing orders directly through the API,
+Retrieving information about placed orders, including statuses and details.
+With these features, Matterhorn REST API is a tool for developers and system integrators, enabling the automation and optimization of processes related to inventory and order management.
+
+
+How to Obtain an API Key?
+An API key is essential for using our REST API. You can generate it directly in the customer panel on our website. The process is simple, free, and available to all registered users of our wholesale. After logging in to the panel, you will find the option to generate an API key, which will give you full access to the features offered by our API. This key is personal and should be stored in a secure place.
+
+
+How to Use Matterhorn REST API?
+The REST API will enable you to:
+Import products into your system and update inventory statuses,
+Check shipping costs to individual countries,
+Place an order,
+Check the status of previously placed orders.
+
+
+Importing Products
+If you plan to integrate your system with our wholesale, the first step should be to handle the retrieval of product offering data. For this purpose, you can use our REST API, using the GET method and the /ITEMS/ path. Alternatively, we also offer the option to download product data in various file formats, such as XML, CSV, or Excel. The decision on how you will retrieve this data depends entirely on you and your needs.
+
+All code examples in our documentation use the placeholder "YOUR-API-KEY" in the place where your API key should be entered. Remember to replace this placeholder with your own generated key before running any queries.
+
+Alternative Product Retrieval from Files:
+You can download them in various file formats such as XML, CSV, or Excel. Additionally, we provide dedicated formats for popular store systems like Shopify, PrestaShop, WooCommerce, and others. You will find all available data retrieval options on the "XML Offer and Other Formats" page. You can also download the Excel file containing the addresses of our product feeds, list of brands, and list of all categories. It is very helpful during integration. You can download it from here: Download dictionary file
+
+Retrieving the List of Products via REST API:
+https://matterhorn-wholesale.com/B2BAPI/ITEMS/?page=1 returns a default of 100 products—subsequent pages of results can be obtained by changing the page parameter. (e.g., 'https://matterhorn-wholesale.com/B2BAPI/ITEMS/?page=2', 'https://matterhorn-wholesale.com/B2BAPI/ITEMS/?page=3', ...) Example of Fetching the First Page in cURL:
+Fetching the first page of the product list—each page by default returns 100 products.
+
+Example in bash
+
+curl -X 'GET' \
+  'https://matterhorn-wholesale.com/B2BAPI/ITEMS/?page=1' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+
+
+
+
+
+Example in PHP:
+
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://matterhorn-wholesale.com/B2BAPI/ITEMS/",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Authorization: YOUR-API-KEY"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error: " . $err;
+} else {
+    $assocArray = json_decode($response, true);
+    print_r($assocArray);
+    // YOUR CODE HERE...
+
+}
+
+
+You can use the following filters when retrieving the list of products, passed as parameters:
+brand_id - Manufacturer ID (you can retrieve the list of manufacturers and their IDs using the method:
+
+curl -X 'GET' \
+  'https://matterhorn-wholesale.com/B2BAPI/DICTIONARIES/BRANDS \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+category_id - Category ID (you can retrieve the list of categories and their IDs using the method:
+
+curl -X 'GET' \
+  'https://matterhorn-wholesale.com/B2BAPI/DICTIONARIES/CATEGORIES' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+new_collection - if we set the value 1 then the list of products will be limited to news from the last 60 days.
+last_update - Filter products where stock or prices changed since a specified date and time. This function allows filtering products in the database that have had changes in stock or prices since the given date and time. The date and time should be provided in the format YYYY-MM-DD HH:MM
+Example of Fetching Products for Numoco Brand:
+
+
+'https://matterhorn-wholesale.com/B2BAPI/ITEMS/?brand_id=428' \ 
+-H 'accept: application/json' \ 
+-H 'Authorization: YOUR-API-KEY'
+
+
+
+PHP:
+
+
+// GETTING FIRST PAGE (100 products) of Numoco brand (brand_id=428)
+// you can use limit=numRowsPerPage parameter to change page size. Max page size is1000.
+// example: https://matterhorn-wholesale.com/B2BAPI/ITEMS/?brand_id=428&page=1&limit=500
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://matterhorn-wholesale.com/B2BAPI/ITEMS/?brand_id=428&page=1",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Authorization: YOUR-API-KEY"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error: " . $err;
+} else {
+    $productsArr = json_decode($response, true);
+    print_r($productsArr);
+    // YOUR CODE HERE
+
+
+
+}
+
+
+
+
+
+
+
+
+Fetching Data for a Specific Product (Example for Product ID 186365):
+
+curl -X 'GET' \
+  'https://matterhorn-wholesale.com/B2BAPI/ITEMS/186365' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+
+
+PHP Code:
+
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://matterhorn-wholesale.com/B2BAPI/ITEMS/186365",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 30,
+    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+    CURLOPT_CUSTOMREQUEST => "GET",
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Authorization: YOUR-API-KEY"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error: " . $err;
+} else {
+    $productsInfoArray = json_decode($response, true);
+    print_r($productsInfoArray);
+    // YOUR CODE HERE...
+
+}
+
+
+
+
+Product Information is Returned in JSON Format:
+
+
+{
+   "id": "186365",
+   "active": "true",
+   "name": " Daydress model 186365 Top Secret ",
+   "name_without_number": " Daydress Top Secret ",
+   "description": "This loose-fitting turtleneck dress is a combination of comfort and elegance. The 3/4 sleeves add lightness, and the smooth material makes it perfect for many occasions. The stand-up collar adds character to the dress, and the loose cut ensures comfortable wear. It's a great option for everyday styling.",
+   "creation_date": "2023-09-26 00:00:00",
+   "color": "green",
+   "category_name": "Day Dresses",
+   "category_id": "42",
+   "category_path": "/WOMEN/Women's Clothing/Dresses/Day Dresses",
+   "brand_id": "261",
+   "brand": "Top Secret",
+   "stock_total": 172,
+   "url": "http://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+   "images": [
+      "http://matterhorn-wholesale.com/db_images/custom900x1200_997785.jpg",
+      "http://matterhorn-wholesale.com/db_images/custom900x1200_997786.jpg",
+      "http://matterhorn-wholesale.com/db_images/custom900x1200_997787.jpg"
+   ],
+   "new_collection": "Y",
+   "variants": [
+      {
+         "variant_uid": "1090549",
+         "name": "34",
+         "stock": "35",
+         "max_processing_time": "3",
+         "ean": ""
+      },
+      {
+         "variant_uid": "1090550",
+         "name": "36",
+         "stock": "19",
+         "max_processing_time": "3",
+         "ean": ""
+      },
+      {
+         "variant_uid": "1090551",
+         "name": "38",
+         "stock": "40",
+         "max_processing_time": "3",
+         "ean": ""
+      },
+      {
+         "variant_uid": "1090552",
+         "name": "40",
+         "stock": "40",
+         "max_processing_time": "3",
+         "ean": ""
+      },
+      {
+         "variant_uid": "1090553",
+         "name": "42",
+         "stock": "38",
+         "max_processing_time": "3",
+         "ean": ""
+      }
+   ],
+   "size_table": "\n\t\t\tSpandex 3 % Polyester 97 % \n\t\t \n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\tSizeTotal lengthChest3491 cm92 cm3691 cm96 cm3893 cm100 cm4093 cm104 cm4295 cm108 cm\n\t\t",
+   "prices": {
+      "EUR": 12.9,
+      "CHF": 15.9,
+      "CZK": 317.9,
+      "USD": 13.9,
+      "RUB": 9154.9,
+      "CAD": 18.9,
+      "AUD": 17.9,
+      "GBP": 10.9,
+      "BGN": 24.9,
+      "DKK": 93.9,
+      "NOK": 110.9,
+      "RON": 57.9,
+      "SEK": 126.9,
+      "HUF": 4572.9
+   },
+   "size_table_txt": " \t\t\tSpandex 3 % Polyester 97 %  \t\t  \t\t\t \t\t\t\t \t\t\t\t\tSizeTotal lengthChest \t\t\t\t \t\t\t3491 cm92 cm3691 cm96 cm3893 cm100 cm4093 cm104 cm4295 cm108 cm \t\t \t\t",
+   "size_table_html": " \t\t\tSpandex 3 % Polyester 97 %  \t\t  \t\t\t \t\t\t\t \t\t\t\t\t \t\t\t\t \t\t\t \t\tSizeTotal lengthChest3491 cm92 cm3691 cm96 cm3893 cm100 cm4093 cm104 cm4295 cm108 cm \t\t"
+}
+
+
+
+Important Information Regarding Product IDs and Variant IDs
+If you plan to integrate your system with our wholesale, it is crucial to store the identifiers (IDs) of products and the unique identifiers of product variants, known as variant_uid, in your database. These identifiers are essential for placing orders through our REST API. In the case of different sizes of the same product, each size will have its own variant_uid that must be preserved. This will allow you to manage orders with ease and precision, whether it's for individual products or their various variants.
+
+Placing Orders Through REST API
+Introduction
+In this section, we will explain how to place orders in our wholesale using the REST API. We will show how to use the PUT method to place an order, discuss the data structure used in the request, and explain how to pay for the placed orders.
+
+Using the PUT Method to Place Orders
+The most important thing to note is that we use the HTTP PUT method for placing orders. It is neither GET nor POST, but PUT.
+
+Example cURL Request
+Here is an example of how to place an order using the cURL tool:
+
+bash
+
+curl -X 'PUT' \
+  'https://matterhorn-wholesale.com/B2BAPI/ACCOUNT/ORDERS/' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "items": [
+    {
+      "variant_uid": 1090551,
+      "quantity": 4
+    },
+    {
+      "variant_uid": 1090552,
+      "quantity": 2
+    }
+  ],
+  "delivery_to": {
+    "first_name": "John",
+    "second_name": "Smith",
+    "country": "de",
+    "street": "Musterstraße",
+    "house_number": "123",
+    "zip": "10115",
+    "city": "Berlin"
+  },
+  "currency": "EUR",
+  "delivery_method_id": 160
+}'
+
+
+
+Example in PHP
+
+
+$curl = curl_init();
+
+$data = [
+    "items" => [
+        [
+            "variant_uid" => 1090551,
+            "quantity" => 4
+        ],
+        [
+            "variant_uid" => 1090552,
+            "quantity" => 2
+        ]
+    ],
+    "delivery_to" => [
+        "first_name" => "John",
+        "second_name" => "Smith",
+        "country" => "de",
+        "street" => "Musterstraße",
+        "house_number" => "123",
+        "zip" => "10115",
+        "city" => "Berlin"
+    ],
+    "currency" => "EUR",
+    "delivery_method_id" => 160
+];
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://matterhorn-wholesale.com/B2BAPI/ACCOUNT/ORDERS/",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CUSTOMREQUEST => "PUT",
+    CURLOPT_POSTFIELDS => json_encode($data),
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Authorization: YOUR-API-KEY",
+        "Content-Type: application/json"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error: " . $err;
+} else {
+    echo $response;
+}
+
+
+
+
+Explanation of JSON Structure
+In the order request, data is sent in JSON format. Below, we describe what each field means:
+items: This is a mandatory field that contains a list of product variants to be ordered. Each item on the list must have:
+variant_uid: Unique identifier of the product variant.
+quantity: The number of units to order.
+delivery_to: This field is optional and is used to specify the delivery address. If it is not provided, the order will be sent to the address of the API key owner.
+currency: The currency of the transaction.
+delivery_method_id: ID of the delivery method.
+How to Retrieve the List of Available Delivery Methods
+If you want to see the available delivery methods, you can use the following cURL query:
+
+bash
+
+curl -X 'GET' \
+  'https://matterhorn-wholesale.com/B2BAPI/DICTIONARIES/DELIVERY' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+
+
+PHP:
+
+
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://matterhorn-wholesale.com/B2BAPI/DICTIONARIES/DELIVERY",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Authorization: YOUR-API-KEY"
+    ],
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+if ($err) {
+    echo "cURL Error: " . $err;
+} else {
+    echo $response;
+}
+
+
+
+
+If you want to inquire only about deliveries to a specific country, add the two-letter country code to the API path, for example, for Germany: 'https://matterhorn-wholesale.com/B2BAPI/DICTIONARIES/DELIVERY/de'
+
+API Response After Placing an Order
+After successfully placing an order, our REST API will return detailed information about the order in JSON format. This includes, among other things:
+id: The unique identifier of the order, which will be needed for further tracking or modification of the order.
+delivery_to: The delivery address that was used. If this field was not provided in the request, the address of the API key owner will be returned.
+items: The list of order items, along with their identifiers and quantities. These data are very useful for further integration and monitoring of the order status. In this way, you can not only place an order but also get a complete picture of what has been ordered, what the delivery details are, and what items are in the order. This will facilitate the management of the ordering process at various stages. If you have additional questions or need further clarification, please contact us.
+
+Paying for the Order
+After placing an order, it is not possible to pay for it through the REST API. The order can be paid for by clicking on the link contained in the confirmation email, which is sent to the email address of the API key owner. Additionally, you can also pay for placed orders in the customer panel.
+
+Retrieving Information About a Placed Order
+If you want to check the details of a placed order, you can do so using the GET method and the appropriate API endpoint, providing the order ID as a parameter in the URL. Below is an example cURL request:
+
+
+
+curl -X 'GET' \ 'https://matterhorn-wholesale.com/B2BAPI/ACCOUNT/ORDERS/12345' \ 
+-H 'accept: application/json' \ 
+-H 'Authorization: YOUR-API-KEY'
+
+
+
+In this case, 12345 is the identifier of the order you want to check.
+What Will You Find in the Response?
+In the response, you will receive a JSON with full details of the order. Some fields, such as the shipping number (shipping_number) or invoice number (invoice_number), may only appear after the order has been shipped. Here is an example response structure:
+
+
+  
+{
+  "id": "67062",
+  "order_date": "2023-10-04 09:14:07",
+  "invoice_number": "",
+  "invoice_url": "",
+  "shipping_number": "",
+  "tracking_url": "https://gls-group.eu/PL/en/parcel-tracking?match=",
+  "shipping_service": "GLS",
+  "status": "New order",
+  "completed_rate": 0,
+  "order_currency": "EUR",
+  "total_net": 80.56,
+  "total_gross": 95.86,
+  "tax": 15.3,
+  "payment_url": "https://matterhorn-wholesale.com/rwd_checkout.php?order_ext=67062&step=4&hashed=sdgsdgdsgdsfgdfsgsfgsdfg",
+  "delivery_to": {
+    "recipient": "John Smith",
+    "country": "de",
+    "street": "Musterstraße 123 / ",
+    "city": "Berlin",
+    "zip": "10115",
+    "phone": ""
+  },
+  "positions": [
+    {
+      "order_position_id": "13326161",
+      "product_id": "186365",
+      "product_variant": "40",
+      "product_variant_uid": "1090552",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326162",
+      "product_id": "186365",
+      "product_variant": "40",
+      "product_variant_uid": "1090552",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326163",
+      "product_id": "186365",
+      "product_variant": "38",
+      "product_variant_uid": "1090551",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326164",
+      "product_id": "186365",
+      "product_variant": "38",
+      "product_variant_uid": "1090551",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326165",
+      "product_id": "186365",
+      "product_variant": "38",
+      "product_variant_uid": "1090551",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326166",
+      "product_id": "186365",
+      "product_variant": "38",
+      "product_variant_uid": "1090551",
+      "product_name": " Daydress model 186365 Top Secret ",
+      "product_url": "https://matterhorn-wholesale.com/daydress_no_186365_prod_id-186365.htm",
+      "product_image": "https://matterhorn-wholesale.com/db_images/medium158x272_997785.jpg",
+      "quantity": "1",
+      "netprice": 12.9,
+      "grossprice": 15.35,
+      "type": "product",
+      "status": "waiting",
+      "ean": 0
+    },
+    {
+      "order_position_id": "13326167",
+      "product_id": "0",
+      "product_variant": null,
+      "product_variant_uid": "0",
+      "product_name": null,
+      "product_url": "https://matterhorn-wholesale.com/",
+      "product_image": "https://matterhorn-wholesale.com/",
+      "quantity": "1",
+      "netprice": -7.74,
+      "grossprice": -9.21,
+      "type": "discount",
+      "status": "ready",
+      "ean": ""
+    },
+    {
+      "order_position_id": "13326168",
+      "product_id": "0",
+      "product_variant": null,
+      "product_variant_uid": "0",
+      "product_name": null,
+      "product_url": "https://matterhorn-wholesale.com/",
+      "product_image": "https://matterhorn-wholesale.com/",
+      "quantity": "1",
+      "netprice": 10.9,
+      "grossprice": 12.97,
+      "type": "shipping cost",
+      "status": "ready",
+      "ean": ""
+    }
+  ]
+}
+
+
+
+With this query, you can easily obtain all the necessary information about the placed order.
+
+Language Versions of the API
+Our REST API is available in various language versions, allowing for better integration and ease of use for customers from different regions. Each language version has its own domain, which needs to be replaced in the API call to use the chosen language version. Here is a list of available language versions along with their corresponding domains:
+English: matterhorn-wholesale.com
+German: matterhorn-moda.de
+Czech: matterhorn-moda.cz
+Slovak: matterhorn-moda.sk
+French: lingeriematterhorn.fr
+Nederlands: matterhorn-moda.nl
+Swedish: wholesalefashion.se
+Romanian: matterhorn-moda.ro
+Hungarian: matterhorn-moda.hu
+Italian: matterhorn-moda.it
+Greek: wholesalefashion.gr
+Lithuanian: wholesalefashion.lt
+Bulgarian: wholesalefashion.bg
+For example, if you want to use the German version, the cURL query to retrieve information about a placed order would look like this:
+
+
+
+curl -X 'GET' \
+  'https://matterhorn-moda.de/B2BAPI/ACCOUNT/ORDERS/12345' \
+  -H 'accept: application/json' \
+  -H 'Authorization: YOUR-API-KEY'
+
+
+
+
+
+Reporting Questions and Errors
+If you have any questions or encounter any errors while using our REST API, please report them to tech@matterhorn-wholesale.com. Our technical team will assist you in resolving any issues or answering any queries you may have.

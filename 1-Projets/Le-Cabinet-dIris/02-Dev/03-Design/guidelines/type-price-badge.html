@@ -1,0 +1,33 @@
+<!-- @dsCard group="Type" viewport="700x150" subtitle="Prix Lato Light 300 doré · badges 11px uppercase" name="Prix & badges" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--surface-page); display: flex; align-items: center; gap: 40px; }
+  .meta { font-family: var(--font-sans-body); font-weight: 300; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 6px; }
+  .price-lg { font-family: var(--font-sans-body); font-weight: 300; font-size: 1.6rem; color: var(--color-accent); letter-spacing: 0.05em; }
+  .price { font-family: var(--font-sans-body); font-weight: 300; font-size: 16px; color: var(--color-accent); letter-spacing: 0.05em; }
+  .badge { font-family: var(--font-sans-body); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 1px; color: var(--color-text-on-dark); display: inline-block; }
+</style>
+</head>
+<body>
+  <div>
+    <span class="meta">Prix fiche · 1.6rem</span>
+    <span class="price-lg">89,00 €</span>
+  </div>
+  <div>
+    <span class="meta">Prix grille · 16px</span>
+    <span class="price">34,00 €</span>
+  </div>
+  <div>
+    <span class="meta">Pièce rare · bordeaux</span>
+    <span class="badge" style="background: var(--color-alert); border: 0.5px solid var(--color-border-strong);">Pièce rare</span>
+  </div>
+  <div>
+    <span class="meta">Cabinet · prune</span>
+    <span class="badge" style="background: var(--color-cabinet);">Cabinet</span>
+  </div>
+</body>
+</html>

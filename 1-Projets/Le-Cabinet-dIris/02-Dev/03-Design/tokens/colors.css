@@ -1,0 +1,47 @@
+/* Le Cabinet d'Iris — Colors
+   Source: BRIEF — Customisation Thème Milibido → Le Cabinet d'Iris (02-Dev/) */
+
+:root {
+  /* ── Base palette ─────────────────────────────── */
+  --color-primary: #1A1A2E;       /* Noir d'encre — fonds, texte principal */
+  --color-accent: #C9A96E;        /* Or antique — accents, bordures, logo, prix */
+  --color-background: #F5F0E8;    /* Ivoire — fond pages, fiches produit */
+  --color-cabinet: #4A2040;       /* Prune — catégories Cabinet, CTA secondaires */
+  --color-alert: #6B2D3E;         /* Bordeaux — alertes stock, badges */
+
+  /* Variantes */
+  --color-primary-light: #2A2A4E;
+  --color-primary-dark: #0F0F1A;
+  --color-accent-light: #D4BC8A;
+  --color-accent-dark: #A88B52;
+  --color-background-dark: #EBE5D9;
+
+  /* ── Texte ────────────────────────────────────── */
+  --color-text-primary: #1A1A2E;
+  --color-text-secondary: #5A5A6E;
+  --color-text-on-dark: #F5F0E8;
+  --color-text-on-accent: #1A1A2E;
+
+  /* ── Bordures ─────────────────────────────────── */
+  --color-border: rgba(201, 169, 110, 0.3);   /* Or antique 30% */
+  --color-border-strong: #C9A96E;
+
+  /* ── Boutons ──────────────────────────────────── */
+  --color-btn-primary-bg: #C9A96E;
+  --color-btn-primary-text: #1A1A2E;
+  --color-btn-primary-hover: #A88B52;
+  --color-btn-secondary-bg: transparent;
+  --color-btn-secondary-text: #C9A96E;
+  --color-btn-secondary-border: #C9A96E;
+
+  /* ── Semantic aliases ─────────────────────────── */
+  --surface-page: var(--color-background);
+  --surface-page-alt: var(--color-background-dark);
+  --surface-dark: var(--color-primary);
+  --surface-cabinet: var(--color-cabinet);
+  --surface-card: var(--color-background);
+  --text-body: var(--color-text-primary);
+  --text-muted: var(--color-text-secondary);
+  --text-inverse: var(--color-text-on-dark);
+  --text-price: var(--color-accent);
+}

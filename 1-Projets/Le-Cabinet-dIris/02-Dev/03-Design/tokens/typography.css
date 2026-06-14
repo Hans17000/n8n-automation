@@ -1,0 +1,71 @@
+/* Le Cabinet d'Iris — Typography
+   Display serif: Cormorant Garamond (Google Fonts) — titres, navigation, boutons
+   Body sans: Lato (Google Fonts) — corps, prix, badges */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Pinyon+Script&display=swap');
+
+:root {
+  /* ── Families ─────────────────────────────────── */
+  --font-serif-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans-body: 'Lato', 'Helvetica Neue', sans-serif;
+  --font-script: 'Pinyon Script', cursive;   /* citations d'Iris uniquement */
+
+  /* ── Sizes ────────────────────────────────────── */
+  --text-hero: 3.5rem;        /* h1 hero homepage */
+  --text-gate-title: 2.5rem;  /* h1 page sas Cabinet */
+  --text-h1: 2rem;
+  --text-h2: 1.6rem;
+  --text-h3: 1.3rem;
+  --text-product-title: 1.8rem;
+  --text-price-lg: 1.6rem;
+  --text-body-size: 15px;
+  --text-nav: 14px;
+  --text-btn: 14px;
+  --text-small: 13px;
+  --text-badge: 11px;
+  --text-quote: 20px;          /* citations d'Iris (script, 18-22px) */
+
+  /* ── Letter-spacing ───────────────────────────── */
+  --tracking-display: 0.02em;   /* titres serif */
+  --tracking-nav: 0.15em;       /* navigation uppercase */
+  --tracking-btn: 0.1em;        /* boutons uppercase */
+  --tracking-subtitle: 0.2em;   /* sous-titre hero uppercase */
+  --tracking-price: 0.05em;
+  --tracking-badge: 0.1em;
+  --tracking-hero: 0.1em;
+
+  /* ── Line heights / weights ───────────────────── */
+  --leading-body: 1.7;
+  --leading-description: 1.8;
+  --weight-display: 600;        /* titres */
+  --weight-display-light: 400;  /* hero, nav, gate */
+  --weight-price: 300;
+}
+
+/* Base element styles (theme defaults) */
+body {
+  font-family: var(--font-sans-body);
+  font-weight: 400;
+  font-size: var(--text-body-size);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+}
+
+h1, h2, h3, .product-title, .category-name, .brand-name {
+  font-family: var(--font-serif-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+  color: var(--color-primary);
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+.product-price, .price {
+  font-family: var(--font-sans-body);
+  font-weight: var(--weight-price);
+  color: var(--color-accent);
+  letter-spacing: var(--tracking-price);
+}

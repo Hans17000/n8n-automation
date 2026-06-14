@@ -1,0 +1,33 @@
+<!-- @dsCard group="Brand" viewport="700x240" subtitle="Monogramme typographique provisoire — SVG officiel à fournir" name="Monogramme & logo" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; background: var(--surface-page); display: grid; grid-template-columns: 1fr 1fr 1fr; min-height: 240px; }
+  .cell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; }
+  .mono { width: 72px; height: 92px; border: 1px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif-display); font-size: 44px; font-weight: 400; line-height: 1; }
+  .mono-sm { width: 40px; height: 52px; font-size: 24px; }
+  .wordmark { font-family: var(--font-serif-display); font-weight: 400; font-size: 19px; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+  .lbl { font-family: var(--font-sans-body); font-weight: 300; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
+</style>
+</head>
+<body>
+  <div class="cell" style="background: var(--color-primary); color: var(--color-accent);">
+    <div class="mono">I</div>
+    <span class="wordmark" style="color: var(--color-text-on-dark);">Le Cabinet<br>d'Iris</span>
+    <span class="lbl" style="color: var(--color-text-on-dark);">Or sur noir d'encre</span>
+  </div>
+  <div class="cell" style="background: var(--color-background); color: var(--color-primary);">
+    <div class="mono">I</div>
+    <span class="wordmark">Le Cabinet<br>d'Iris</span>
+    <span class="lbl" style="color: var(--text-muted);">Noir sur ivoire</span>
+  </div>
+  <div class="cell" style="background: var(--color-cabinet); color: var(--color-text-on-dark);">
+    <div class="mono mono-sm">I</div>
+    <span class="wordmark">Le Cabinet d'Iris</span>
+    <span class="lbl">Monochrome blanc · horizontal</span>
+  </div>
+</body>
+</html>

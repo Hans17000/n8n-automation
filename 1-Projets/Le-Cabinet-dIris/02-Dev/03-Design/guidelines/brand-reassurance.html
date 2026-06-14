@@ -1,0 +1,23 @@
+<!-- @dsCard group="Brand" viewport="700x160" subtitle="Réassurance — icônes trait fin or sur noir d'encre (Lucide, substitution)" name="Réassurance" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 0; background: var(--color-primary); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; min-height: 160px; }
+  .item { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 10px; }
+  .item i { color: var(--color-accent); width: 26px; height: 26px; display: block; }
+  .item i svg { width: 26px; height: 26px; stroke-width: 1.5; }
+  .item span { font-family: var(--font-sans-body); font-weight: 300; font-size: 12px; letter-spacing: 0.08em; color: var(--color-text-on-dark); }
+</style>
+</head>
+<body>
+  <div class="item"><i data-lucide="package"></i><span>Livraison discrète</span></div>
+  <div class="item"><i data-lucide="lock-keyhole"></i><span>Paiement sécurisé</span></div>
+  <div class="item"><i data-lucide="key-round"></i><span>Curation Iris</span></div>
+  <div class="item"><i data-lucide="undo-2"></i><span>Retours sous 14j</span></div>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

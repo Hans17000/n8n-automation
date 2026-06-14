@@ -1,0 +1,34 @@
+Accueil
+ |
+  ----> Le Vestiaire intime
+	|
+	| ----> Dessous
+	|	|
+	|	| ----> Culottes & strings
+	|	|----> Culottes ouvertes
+	|	|----> Bodys
+	|	|----> Ensembles & parures
+	|	|----> Soutiens-gorge
+	|	|----> Corsets & guepières
+	|	|----> Porte-jarretelles
+	|	|----> Bas & collants
+	|	|----> Collants ouverts
+	|	| ----> Nuisettes & deshabilles
+	|
+	| ----> Silhouettes
+	|	|
+	|	|----> Robes
+	|	|----> Tops & bustiers
+	|	|----> Jupes
+	|	|----> Pantalons & shorts
+	|	| ----> Combinaisons
+	|
+	| ----> Parures & accessoires
+		|
+		|----> Gants
+		|----> Masques & loups
+		|----> Tenues & deguisements
+		|----> Perruques
+		|----> Caches-seins
+		|----> Harnais
+		| ----> Colliers

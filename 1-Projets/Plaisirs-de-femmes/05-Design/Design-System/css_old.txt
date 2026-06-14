@@ -1,0 +1,1250 @@
+.ps-shoppingcart.dropdown #blockcart-content{
+z-index: 1000;
+}
+/* ============================================================
+   PLAISIRS DE FEMMES — Custom CSS pour PrestaShop / Warehouse
+   Charte graphique : Raffiné & Sensuel · Dark Mode
+
+   À coller dans :
+     Back-office → Apparence → Theme Configurator → Custom CSS
+   OU (FTP) :
+     /themes/warehouse/assets/css/custom.css
+   ============================================================ */
+
+/* -------- 1. Polices Google Fonts -------- */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@300;400;500;600;700&display=swap');
+
+/* -------- 2. Variables -------- */
+:root {
+  --pdf-noir:           #0D0D0D;
+  --pdf-noir-2:         #0A080C;
+  --pdf-bordeaux:       #6B2D3E;
+  --pdf-bordeaux-hover: #7D3549;
+  --pdf-rose:           #C9A5A5;
+  --pdf-or-rose:        #B08968;
+  --pdf-creme:          #FAF5F0;
+  --pdf-gris-chaud:     #B8AEAE;
+  --pdf-gris-moyen:     #8A7E7E;
+  --pdf-gris-sombre:    #6B4A5A;
+  --pdf-surface:        #1A1A2E;
+  --pdf-surface-hover:  #252540;
+  --pdf-surface-cart:   #1A0F1A;
+  --pdf-bordure:        #2A2A3A;
+  --pdf-bordure-cart:   #2A1525;
+}
+
+/* Override des variables Warehouse les plus connues */
+:root, html, body {
+  --main-color:        #6B2D3E !important;
+  --main-color-hover:  #7D3549 !important;
+  --secondary-color:   #C9A5A5 !important;
+  --link-color:        #B8AEAE !important;
+  --link-hover:        #C9A5A5 !important;
+  --body-bg:           #0D0D0D !important;
+  --body-color:        #FAF5F0 !important;
+  --heading-color:     #FAF5F0 !important;
+  --border-color:      #2A2A3A !important;
+}
+
+/* -------- 3. BASE -------- */
+html, body {
+  background-color: #0D0D0D !important;
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+#wrapper, #content-wrapper, #main, main, .l-wrapper, #page,
+body#index, body#index #wrapper {
+  background: #0D0D0D !important;
+}
+
+/* -------- 4. TITRES -------- */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.title, .page-heading, .products-section-title {
+  font-family: 'Playfair Display', serif !important;
+  color: #FAF5F0 !important;
+  text-transform: none !important;
+  font-weight: 400 !important;
+}
+h1, .h1 { letter-spacing: 0.03em !important; font-style: italic !important; font-weight: 300 !important; }
+h2, .h2 { letter-spacing: 0.02em !important; }
+
+/* Décoratifs — Great Vibes */
+.pdf-script, .pdf-accent-title, .iqit-script {
+  font-family: 'Great Vibes', cursive !important;
+  color: #C9A5A5 !important;
+  font-weight: 400 !important;
+  text-transform: none !important;
+}
+
+/* -------- 5. LIENS -------- */
+a, a:visited {
+  color: #B8AEAE !important;
+  transition: color 0.3s ease !important;
+  text-decoration: none !important;
+}
+a:hover, a:focus {
+  color: #C9A5A5 !important;
+  text-decoration: none !important;
+}
+
+/* Sélection texte */
+::selection { background: #6B2D3E !important; color: #FAF5F0 !important; }
+::-moz-selection { background: #6B2D3E !important; color: #FAF5F0 !important; }
+
+/* -------- 6. BOUTONS -------- */
+.btn-primary,
+.btn-primary:visited,
+button.btn-primary,
+input[type="submit"].btn-primary,
+.add-to-cart,
+.add-to-cart.btn-primary {
+  background-color: #6B2D3E !important;
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  transition: all 0.3s ease !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+.add-to-cart:hover {
+  background-color: #7D3549 !important;
+  background: #7D3549 !important;
+  border-color: #7D3549 !important;
+  color: #FAF5F0 !important;
+  box-shadow: 0 4px 15px rgba(107,45,62,0.4) !important;
+}
+
+.btn-secondary, .btn.btn-default, .btn-default {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid #B08968 !important;
+  color: #B08968 !important;
+  border-radius: 2px !important;
+  font-family: 'Raleway', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+}
+.btn-secondary:hover, .btn.btn-default:hover {
+  background: #B08968 !important;
+  color: #0D0D0D !important;
+}
+
+/* -------- 7. HEADER -------- */
+#header, .header-top, #_desktop_top_menu, .header-nav {
+  background: #0D0D0D !important;
+  color: #FAF5F0 !important;
+  border-bottom: 1px solid #2A2A3A !important;
+}
+
+/* Bandeau d'annonce */
+.header-banner, #top-bar, .top-bar {
+  background: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+}
+.header-banner a, #top-bar a, .top-bar a { color: #FAF5F0 !important; }
+
+/* Logo */
+#_desktop_logo img, .logo, .logo img, .header-logo img {
+  max-width: 200px !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Icônes header (panier, compte, recherche, wishlist) */
+#header i, #header svg, #header .material-icons,
+.header-nav i, ._desktop_user_info i, ._desktop_cart i,
+.iqit-wishlist i, .iqit-search i {
+  color: #FAF5F0 !important;
+  fill: #FAF5F0 !important;
+  opacity: 1 !important;
+}
+#header a:hover i, #header a:hover svg { color: #C9A5A5 !important; fill: #C9A5A5 !important; }
+
+/* Compteur panier / wishlist */
+.cart-products-count, .blockcart .cart-products-count,
+.iqit-wishlist-count, [class*="-count"] {
+  background: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  border: none !important;
+}
+
+/* Barre de recherche */
+#search_widget input, .search-widget input, input[name="s"] {
+  background: #6B2D3E !important;
+  background-color: #6B2D3E !important;
+  border: 1px solid #6B2D3E !important;
+  color: #FAF5F0 !important;
+  -webkit-box-shadow: 0 0 0 1000px #6B2D3E inset !important;
+  -webkit-text-fill-color: #FAF5F0 !important;
+  border-radius: 2px !important;
+}
+#search_widget input::placeholder, .search-widget input::placeholder {
+  color: rgba(250,245,240,0.65) !important;
+}
+#search_widget button, .search-widget button {
+  background: #6B2D3E !important;
+  border: 1px solid #6B2D3E !important;
+  color: #FAF5F0 !important;
+}
+
+/* -------- 8. MEGAMENU (iqitmegamenu) -------- */
+#iqitmegamenu-horizontal,
+.iqitmegamenu, .iqitmegamenu-shown,
+nav.iqitmegamenu, .iqit-menu {
+  background: #6B2D3E !important;
+}
+.iqitmegamenu .cbp-hrmenu > ul > li > a,
+.iqitmegamenu > ul > li > a,
+nav.iqitmegamenu a[data-depth="0"],
+.iqit-menu a {
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  padding: 14px 18px !important;
+  background: transparent !important;
+}
+.iqitmegamenu a:hover, .iqit-menu a:hover,
+.iqitmegamenu > ul > li:hover > a { color: #C9A5A5 !important; background: transparent !important; }
+
+/* Sous-menus */
+.iqitmegamenu .cbp-hrsub, .iqitmegamenu .sub-menu,
+.iqit-menu .dropdown-menu, .dropdown-menu {
+  background: #1A1A2E !important;
+  border: 1px solid #2A2A3A !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6) !important;
+}
+.iqitmegamenu .cbp-hrsub a, .iqit-menu .dropdown-menu a,
+.dropdown-item {
+  color: #B8AEAE !important;
+}
+.iqitmegamenu .cbp-hrsub a:hover, .iqit-menu .dropdown-menu a:hover,
+.dropdown-item:hover, .dropdown-item:focus {
+  color: #C9A5A5 !important;
+  background: #252540 !important;
+}
+
+/* Label "Nouveau" / "Sale" dans le menu */
+.cbp-menu-label, .iqit-menu-label, .label-menu-new {
+  background: #B08968 !important;
+  color: #0D0D0D !important;
+}
+
+/* -------- 9. BLOCS FEATURES (livraison, paiement…) -------- */
+.iqitfeatures, .features-block, #iqitfeatures {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+}
+.iqitfeatures .feature-title, .iqitfeatures h3 {
+  color: #FAF5F0 !important;
+  font-family: 'Playfair Display', serif !important;
+}
+.iqitfeatures .feature-text, .iqitfeatures p {
+  color: #8A7E7E !important;
+}
+.iqitfeatures i, .iqitfeatures svg {
+  color: #B08968 !important;
+  fill: #B08968 !important;
+}
+
+/* -------- 10. PRODUITS — Cartes -------- */
+.product-miniature, .product-miniature .thumbnail-container,
+.js-product, article.product-miniature {
+  background: #0D0D0D !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  transition: all 0.4s ease !important;
+}
+.product-miniature:hover, .product-miniature:hover .thumbnail-container {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+}
+
+/* Zone image — fond sombre uniforme */
+.product-miniature .thumbnail-container .product-thumbnail,
+.product-miniature .product-image {
+  background: #0A080C !important;
+  height: 320px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+.product-miniature .product-thumbnail img,
+.product-miniature img.img-fluid {
+  max-height: 320px !important;
+  object-fit: contain !important;
+  width: auto !important;
+}
+
+/* Sparkle hover — la signature */
+.product-miniature .thumbnail-container::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; right: 0 !important;
+  height: 55% !important;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, transparent 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+.product-miniature .thumbnail-container::before {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; right: 0 !important;
+  height: 55% !important;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 1.5px, transparent 2.5px),
+    radial-gradient(circle, rgba(255,255,255,0.85) 1px, transparent 2px),
+    radial-gradient(circle, rgba(201,165,165,0.8) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,255,255,0.9) 2px, transparent 3px),
+    radial-gradient(circle, rgba(176,137,104,0.7) 1px, transparent 2px) !important;
+  background-size: 85px 58px, 110px 82px, 68px 92px, 95px 62px, 78px 72px, 102px 78px !important;
+  background-position: 8% 75%, 30% 45%, 55% 85%, 75% 55%, 20% 30%, 88% 80% !important;
+  background-repeat: repeat !important;
+  z-index: 3 !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+  pointer-events: none !important;
+}
+.product-miniature:hover .thumbnail-container::after { opacity: 1 !important; }
+.product-miniature:hover .thumbnail-container::before {
+  opacity: 1 !important;
+  animation: pdfSparkle 2.2s ease-in-out infinite !important;
+}
+@keyframes pdfSparkle {
+  0%, 100% { opacity: 0.3; }
+  45%      { opacity: 0.9; }
+  75%      { opacity: 0.45; }
+}
+
+/* Titre produit + prix */
+.product-miniature .product-title a,
+.product-title a,
+.products .product-title a {
+  color: #FAF5F0 !important;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+}
+.product-miniature .product-title a:hover { color: #C9A5A5 !important; }
+
+.product-miniature .price, .product-price-and-shipping .price,
+.current-price, .current-price .price {
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 400 !important;
+}
+.regular-price, .product-miniature .regular-price {
+  color: #8A7E7E !important;
+  text-decoration: line-through !important;
+}
+
+/* Badges produits */
+.product-flag, .product-flag.new, .product-flag.online-only {
+  background: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 10px !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  border-radius: 2px !important;
+  padding: 5px 11px !important;
+}
+.product-flag.discount, .product-flag.on-sale,
+.product-flag.discount-percentage {
+  background: #B08968 !important;
+  color: #0D0D0D !important;
+}
+
+/* IQIT wishlist / compare boutons sur cartes */
+.iqit-wishlist-button i, .iqit-compare-button i { color: #B8AEAE !important; }
+.iqit-wishlist-button:hover i, .iqit-wishlist-button.active i { color: #C9A5A5 !important; }
+
+/* -------- 11. FICHE PRODUIT -------- */
+.product-container, #product, .product-prices {
+  background: #0D0D0D !important;
+  color: #FAF5F0 !important;
+}
+.product-prices .current-price { color: #FAF5F0 !important; }
+.product-prices .tax-shipping-delivery-label,
+.product-prices .discount, .product-discount .regular-price { color: #8A7E7E !important; }
+.product-discount .discount-percentage {
+  background: #B08968 !important;
+  color: #0D0D0D !important;
+}
+.product-description, .product-description p { color: #B8AEAE !important; }
+
+/* Onglets fiche produit */
+.product-tabs .nav-tabs, .tabs .nav-tabs {
+  border-bottom-color: #2A2A3A !important;
+}
+.product-tabs .nav-link, .tabs .nav-link {
+  color: #8A7E7E !important;
+  font-family: 'Raleway', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.10em !important;
+  font-size: 12px !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+}
+.product-tabs .nav-link.active, .tabs .nav-link.active {
+  color: #FAF5F0 !important;
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  border-bottom: 2px solid #6B2D3E !important;
+}
+.product-tabs .nav-link:hover, .tabs .nav-link:hover {
+  color: #C9A5A5 !important;
+  border-bottom-color: #6B2D3E !important;
+}
+
+/* Quantité */
+.product-quantity input[type="number"],
+.qty .form-control, .input-group .form-control {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+  color: #FAF5F0 !important;
+}
+.product-quantity .btn, .qty .btn, .input-group .btn {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+  color: #FAF5F0 !important;
+}
+
+/* -------- 12. FORMULAIRES -------- */
+.form-control, input[type="text"], input[type="email"],
+input[type="password"], input[type="number"], input[type="tel"],
+input[type="search"], textarea, select {
+  background: #1A1A2E !important;
+  border: 1px solid #2A2A3A !important;
+  color: #FAF5F0 !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+.form-control:focus, input:focus, textarea:focus, select:focus {
+  border-color: #6B2D3E !important;
+  box-shadow: 0 0 0 0.2rem rgba(107,45,62,0.25) !important;
+  background: #1A1A2E !important;
+  color: #FAF5F0 !important;
+  outline: none !important;
+}
+.form-control::placeholder, input::placeholder, textarea::placeholder {
+  color: #8A7E7E !important;
+}
+label { color: #B8AEAE !important; }
+
+/* Checkbox + radio */
+.custom-checkbox input[type="checkbox"] + span,
+.custom-radio input[type="radio"] + span {
+  border-color: #2A2A3A !important;
+  background: #0D0D0D !important;
+}
+.custom-checkbox input[type="checkbox"]:checked + span,
+.custom-radio input[type="radio"]:checked + span {
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+}
+
+/* -------- 13. PANIER -------- */
+.cart-grid, .cart-container, #cart {
+  background: #0D0D0D !important;
+}
+.cart-grid .card, .cart-container .card {
+  background: #1A0F1A !important;
+  border: 1px solid #2A1525 !important;
+  border-top: 3px solid #6B2D3E !important;
+  box-shadow: inset 0 -1px 0 #B08968 !important;
+  border-radius: 4px !important;
+}
+.cart-grid .product-line-info a {
+  color: #FFFFFF !important;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+}
+.cart-summary-line .label, .cart-summary-line .value {
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+.cart-summary-line .label { color: #C9A5A5 !important; font-size: 11px !important; letter-spacing: 0.15em !important; text-transform: uppercase !important; }
+.cart-summary-line.cart-total .value {
+  font-family: 'Playfair Display', serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 300 !important;
+  color: #FAF5F0 !important;
+}
+
+/* -------- 14. NEWSLETTER -------- */
+.block_newsletter, #block_newsletter, .iqit-newsletter {
+  background: #0D0D0D !important;
+  border-top: 1px solid #B08968 !important;
+  padding: 64px 24px !important;
+}
+.block_newsletter h3, .block_newsletter h2, .block_newsletter .h3 {
+  font-family: 'Playfair Display', serif !important;
+  color: #FAF5F0 !important;
+}
+.block_newsletter input[type="email"] {
+  background: #1A1A2E !important;
+  border: 1px solid #2A2A3A !important;
+  color: #FAF5F0 !important;
+  border-radius: 2px !important;
+}
+.block_newsletter input[type="email"]::placeholder { color: #8A7E7E !important; }
+.block_newsletter .btn, .block_newsletter button {
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  border-radius: 2px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.20em !important;
+}
+
+/* -------- 15. FOOTER -------- */
+#footer, .footer, .footer-container {
+  background: #0D0D0D !important;
+  color: #B8AEAE !important;
+  border-top: 1px solid #B08968 !important;
+}
+#footer h3, #footer h4, #footer .h3, #footer .h4,
+.footer-container h3, .footer-container h4 {
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.20em !important;
+  text-transform: uppercase !important;
+}
+#footer a, .footer-container a {
+  color: #B8AEAE !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 13px !important;
+}
+#footer a:hover, .footer-container a:hover { color: #C9A5A5 !important; }
+#footer p, .footer-container p { color: #8A7E7E !important; }
+
+/* Footer bottom — copyright */
+.footer-container-bottom, .footer-bottom, #footer-bottom {
+  background: #6B2D3E !important;
+  color: rgba(250,245,240,0.8) !important;
+  padding: 18px 24px !important;
+}
+.footer-container-bottom a, .footer-bottom a { color: rgba(250,245,240,0.8) !important; }
+
+/* -------- 16. MODALES -------- */
+.modal-content, .blockcart-modal .modal-content {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+  color: #FAF5F0 !important;
+}
+.modal-header, .modal-footer { border-color: #2A2A3A !important; }
+.modal-header .close, .modal-header button.close { color: #B8AEAE !important; opacity: 1 !important; }
+
+/* -------- 17. PAGINATION -------- */
+.pagination .page-list li a, .pagination .page-list li span {
+  background: #0D0D0D !important;
+  border-color: #2A2A3A !important;
+  color: #B8AEAE !important;
+  border-radius: 2px !important;
+}
+.pagination .page-list li.current a, .pagination .page-list .current > a {
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  color: #FAF5F0 !important;
+}
+
+/* -------- 18. BREADCRUMB -------- */
+.breadcrumb, .breadcrumb-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+.breadcrumb li, .breadcrumb li a, .breadcrumb li span {
+  color: #B8AEAE !important;
+  font-size: 12px !important;
+  font-family: 'Raleway', sans-serif !important;
+  letter-spacing: 0.05em !important;
+}
+.breadcrumb li a:hover { color: #C9A5A5 !important; }
+
+/* -------- 19. TABLEAUX (compte, historique) -------- */
+table, .table { color: #B8AEAE !important; }
+table thead th, .table thead th {
+  background: #1A1A2E !important;
+  border-color: #2A2A3A !important;
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.10em !important;
+  font-size: 11px !important;
+}
+table tbody td, .table tbody td { border-color: #2A2A3A !important; }
+table tbody tr:hover, .table tbody tr:hover { background: #252540 !important; }
+
+/* -------- 20. SCROLLBAR -------- */
+::-webkit-scrollbar { width: 8px; background: #0D0D0D; }
+::-webkit-scrollbar-track { background: #0D0D0D; }
+::-webkit-scrollbar-thumb { background: #2A2A3A; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #6B2D3E; }
+
+/* -------- 21. ALERTES -------- */
+.alert-success { background: rgba(107,45,62,0.15) !important; border-color: #6B2D3E !important; color: #C9A5A5 !important; }
+.alert-info, .alert-warning { background: rgba(176,137,104,0.15) !important; border-color: #B08968 !important; color: #B08968 !important; }
+.alert-danger { background: rgba(180,50,50,0.15) !important; border-color: #a03030 !important; color: #e07070 !important; }
+
+/* -------- 22. MASQUER LES BLOCS DE DÉMO WAREHOUSE -------- */
+/* Tant que la boutique est en construction, on cache ce qui n'est pas encore traduit / configuré.
+   Décommente / commente selon ce que tu veux garder pendant la mise en place.
+
+   Si tu veux remettre un de ces blocs visible : supprime sa ligne ici. */
+
+/* Bloc "I am text block. Click edit button to change this text…" Lorem ipsum génériques */
+.elementor-widget-text-editor:has(p:first-child:nth-last-child(1)) p:contains("I am text block") { display: none !important; }
+
+/* Témoignages démo "John Doe / Designer" — à activer une fois remplacés */
+/* .iqit-testimonials, .testimonials-block { display: none !important; } */
+
+/* Bloc "$5 discount * valid only in June" — démo IQIT */
+/* .elementor-element:has(.elementor-heading-title:contains("$5 discount")) { display: none !important; } */
+
+/* Image localhost cassée "people1.jpg" etc — fallback discret */
+img[src*="localhost"], img[src*="iqit-commerce.com/ps17/demo1"] {
+  opacity: 0.15 !important;
+  filter: grayscale(1) !important;
+}
+
+/* -------- 23. RESPONSIVE -------- */
+@media (max-width: 991px) {
+  .iqitmegamenu, #iqitmegamenu-horizontal { background: #0D0D0D !important; }
+  #header { box-shadow: 0 2px 15px rgba(0,0,0,0.4) !important; }
+  .header-banner, #top-bar { font-size: 10px !important; padding: 6px !important; }
+}
+
+/* ============================================================
+   FIN — Plaisirs de Femmes Warehouse custom CSS
+   ============================================================ */
+
+
+/* ============================================================
+   24. HEADER PERSONNALISÉ — Wordmark Great Vibes
+   ============================================================
+
+   ⚠ Deux variantes selon ton logo actuel sur PrestaShop :
+
+   VARIANTE A — Tu gardes le logo image actuel (avec le texte
+   "Plaisirs de Femmes" déjà dans l'image)
+      → Laisse cette section TELLE QUELLE,
+        elle se contente de centrer / dimensionner le logo proprement.
+
+   VARIANTE B — Tu uploades dans PrestaShop le logo
+   "licorne seule" (le fichier assets/logo-mark.png de ce design
+   system), puis le CSS ajoute le wordmark en Great Vibes dessous
+      → Décommente le bloc "VARIANTE B" plus bas.
+
+   Recommandation maison de couture : la VARIANTE B est plus
+   raffinée — image-symbole + nom typographique séparé.
+   ============================================================ */
+
+/* === Layout commun du logo (les deux variantes) === */
+#_desktop_logo, .header-logo, #header .logo, .logo-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 8px 0 !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+#_desktop_logo a, .header-logo a, #header .logo a {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  gap: 6px !important;
+}
+
+/* === VARIANTE A — Logo image complet (par défaut) === */
+#_desktop_logo img, .header-logo img, #header .logo img, .logo img {
+  max-width: 240px !important;
+  width: auto !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+  transition: opacity 0.3s ease !important;
+}
+#_desktop_logo a:hover img, .header-logo a:hover img {
+  opacity: 0.85 !important;
+}
+
+/* === VARIANTE B — DÉCOMMENTE le bloc ci-dessous si tu uploades
+   le logo licorne seule en back-office (sans texte) ===
+
+#_desktop_logo img, .header-logo img, #header .logo img, .logo img {
+  max-width: 96px !important;
+  width: 96px !important;
+  height: auto !important;
+}
+
+#_desktop_logo a::after,
+.header-logo a::after,
+#header .logo a::after {
+  content: "Plaisirs de\A Femmes" !important;
+  white-space: pre !important;
+  display: block !important;
+  font-family: 'Great Vibes', cursive !important;
+  font-size: 1.8rem !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+  color: #C9A5A5 !important;
+  line-height: 1.35 !important;
+  text-align: center !important;
+  margin-top: 6px !important;
+  letter-spacing: 0.02em !important;
+  text-transform: none !important;
+  text-shadow: 0 0 24px rgba(107,45,62,0.25) !important;
+  font-variant: normal !important;
+}
+
+#_desktop_logo a:hover::after,
+.header-logo a:hover::after {
+  color: #E6CBC9 !important;
+  transition: color 0.3s ease !important;
+}
+
+   === FIN VARIANTE B === */
+
+
+/* ============================================================
+   25. HEADER — Raffinement maison de couture
+   ============================================================ */
+
+/* Bandeau d'annonce — plus discret, plus haute couture */
+.header-banner, #top-bar, .top-bar {
+  padding: 9px 16px !important;
+  font-size: 10px !important;
+  letter-spacing: 0.30em !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(176,137,104,0.30) !important;
+}
+
+/* Header — fond ultra-stable, hairline or rosé subtile */
+#header {
+  background: #0D0D0D !important;
+  border-bottom: 1px solid rgba(176,137,104,0.20) !important;
+  box-shadow: none !important;
+}
+#header.is-sticky, #header.sticky, .header.is-fixed {
+  background: rgba(13,13,13,0.96) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.5) !important;
+}
+
+/* Espacement header — plus respirant */
+.header-top, #header .header-top {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+
+/* Icônes header — taille couture, plus fines */
+#header i, #header .material-icons,
+.header-nav i, ._desktop_user_info i, ._desktop_cart i,
+.iqit-wishlist i, .iqit-search i,
+.header-top svg {
+  font-size: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  stroke-width: 1.5 !important;
+  color: #FAF5F0 !important;
+  opacity: 1 !important;
+  transition: color 0.3s ease !important;
+}
+
+/* Texte "Panier / Empty / 0 / etc" — uppercase couture */
+.header-top .blockcart .header,
+.blockcart-collapsed,
+.cart-products-count-text,
+._desktop_cart .cart-text,
+.cart-preview .header {
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 10px !important;
+  letter-spacing: 0.20em !important;
+  text-transform: uppercase !important;
+  color: #B8AEAE !important;
+}
+
+/* Compteur panier / wishlist — plus petit, plus chic */
+.cart-products-count, .blockcart .cart-products-count,
+.iqit-wishlist-count, [class*="-count"] {
+  background: #6B2D3E !important;
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  min-width: 18px !important;
+  height: 18px !important;
+  padding: 0 5px !important;
+  border-radius: 999px !important;
+  border: none !important;
+  display: inline-grid !important;
+  place-items: center !important;
+}
+
+
+/* ============================================================
+   26. MEGAMENU — Maison de couture (CAPS très espacé)
+   ============================================================ */
+
+#iqitmegamenu-horizontal, .iqitmegamenu, .iqit-menu {
+  background: #0D0D0D !important;
+  border-top: 1px solid rgba(176,137,104,0.18) !important;
+  border-bottom: 1px solid rgba(176,137,104,0.18) !important;
+}
+
+.iqitmegamenu .cbp-hrmenu > ul > li > a,
+nav.iqitmegamenu a[data-depth="0"],
+.iqit-menu > ul > li > a {
+  color: #FAF5F0 !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  padding: 18px 22px !important;
+  background: transparent !important;
+  position: relative !important;
+}
+
+/* Hairline rose poudrée au survol — discrète */
+.iqitmegamenu .cbp-hrmenu > ul > li > a::after,
+nav.iqitmegamenu a[data-depth="0"]::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 22px !important; right: 22px !important;
+  bottom: 12px !important;
+  height: 1px !important;
+  background: #C9A5A5 !important;
+  transform: scaleX(0) !important;
+  transform-origin: center !important;
+  transition: transform 0.4s ease !important;
+}
+.iqitmegamenu .cbp-hrmenu > ul > li:hover > a::after,
+.iqitmegamenu .cbp-hrmenu > ul > li.cbp-hropen > a::after,
+nav.iqitmegamenu a[data-depth="0"]:hover::after {
+  transform: scaleX(1) !important;
+}
+
+.iqitmegamenu a:hover, .iqit-menu a:hover { color: #C9A5A5 !important; background: transparent !important; }
+
+
+/* ============================================================
+   27. POLISH GLOBAL — Détails maison de couture
+   ============================================================ */
+
+/* Titres de section avec script accent */
+.featured-products .products-section-title,
+.products-section-title,
+h2.h2.text-uppercase {
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  text-transform: none !important;
+  font-size: 2rem !important;
+  letter-spacing: 0.02em !important;
+  color: #FAF5F0 !important;
+  text-align: center !important;
+}
+
+/* Séparateur or-rosé décoratif sous les titres */
+.featured-products .products-section-title::after,
+.products-section-title::after {
+  content: '✦' !important;
+  display: block !important;
+  color: #B08968 !important;
+  font-size: 14px !important;
+  margin: 12px auto 0 !important;
+  letter-spacing: 0.6em !important;
+}
+
+/* Liens d'action discrets type "Voir tout" "Découvrir" */
+.products-section-link, .more-link, .all-link {
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.20em !important;
+  text-transform: uppercase !important;
+  color: #C9A5A5 !important;
+  border-bottom: 1px solid #C9A5A5 !important;
+  padding-bottom: 4px !important;
+  transition: all 0.3s ease !important;
+}
+.products-section-link:hover, .more-link:hover {
+  color: #FAF5F0 !important;
+  border-bottom-color: #FAF5F0 !important;
+}
+
+/* ============================================================
+   FIN — Sections 24 → 27 · raffinement couture
+   ============================================================ */
+
+
+/* ============================================================
+   28. PATCH POST-DÉPLOIEMENT — Retouches après première vue live
+   ============================================================ */
+
+/* ---- Newsletter — éliminer le violet/lavande du thème par défaut ---- */
+.block_newsletter input[type="email"],
+.iqit-newsletter input[type="email"],
+#footer .block_newsletter input,
+#footer .block_newsletter input[type="email"],
+.block_newsletter form input,
+.iqit-newsletter form input,
+input[name="email"] {
+  background: #1A1A2E !important;
+  background-color: #1A1A2E !important;
+  border: 1px solid #2A2A3A !important;
+  color: #FAF5F0 !important;
+  border-radius: 2px !important;
+  -webkit-box-shadow: 0 0 0 1000px #1A1A2E inset !important;
+  box-shadow: 0 0 0 1000px #1A1A2E inset !important;
+  -webkit-text-fill-color: #FAF5F0 !important;
+  outline: none !important;
+}
+.block_newsletter input[type="email"]:focus,
+.iqit-newsletter input[type="email"]:focus,
+input[name="email"]:focus {
+  border-color: #6B2D3E !important;
+  box-shadow: 0 0 0 1000px #1A1A2E inset, 0 0 0 2px rgba(107,45,62,0.35) !important;
+  -webkit-box-shadow: 0 0 0 1000px #1A1A2E inset, 0 0 0 2px rgba(107,45,62,0.35) !important;
+  outline: none !important;
+}
+
+/* Bouton submit newsletter (petite enveloppe ronde) */
+.block_newsletter button[type="submit"],
+.iqit-newsletter button[type="submit"],
+.block_newsletter .btn-newsletter {
+  background: #6B2D3E !important;
+  background-color: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  color: #FAF5F0 !important;
+}
+.block_newsletter button[type="submit"]:hover { background: #7D3549 !important; }
+
+
+/* ---- Icônes sociales footer — éliminer les pastilles lavande/rose pétard ---- */
+.iqit-social-links a, .iqit-social a,
+#footer .social-links a, #footer [class*="social"] a,
+.block-social a, .footer-social a {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(176,137,104,0.40) !important;
+  color: #B8AEAE !important;
+  border-radius: 50% !important;
+  width: 36px !important; height: 36px !important;
+  display: inline-flex !important;
+  align-items: center !important; justify-content: center !important;
+  margin: 0 4px !important;
+  transition: all 0.3s ease !important;
+}
+.iqit-social-links a:hover, .iqit-social a:hover,
+#footer .social-links a:hover, .block-social a:hover {
+  background: #6B2D3E !important;
+  border-color: #6B2D3E !important;
+  color: #FAF5F0 !important;
+}
+.iqit-social-links a i, .iqit-social a i,
+#footer .social-links i, .block-social i {
+  color: inherit !important;
+  font-size: 14px !important;
+}
+
+
+/* ---- Barre breadcrumb / "Sample tab" — affiner (moins de bloc bordeaux plein) ---- */
+.breadcrumb-wrapper, #wrapper .breadcrumb,
+.iqit-breadcrumb-wrapper, .page-breadcrumb {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-top: 1px solid rgba(176,137,104,0.18) !important;
+  border-bottom: 1px solid rgba(176,137,104,0.18) !important;
+  padding: 14px 24px !important;
+}
+.breadcrumb-wrapper .breadcrumb, .iqit-breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.breadcrumb li, .breadcrumb a {
+  color: #B8AEAE !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 12px !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+}
+.breadcrumb a:hover { color: #C9A5A5 !important; }
+
+/* Icône maison du breadcrumb (la maison bordeaux à gauche) */
+.breadcrumb .home, .breadcrumb li:first-child a,
+.breadcrumb-wrapper .home-icon {
+  background: transparent !important;
+  color: #B08968 !important;
+}
+.breadcrumb .home i, .breadcrumb li:first-child i {
+  color: #B08968 !important; font-size: 14px !important;
+}
+
+
+/* ---- Titre de page CMS (Accueil, Livraison, etc) — centrer + ornement ---- */
+.cms-id-page h1, .page-header h1,
+.cms-page h1.page-title,
+#main-page-content h1, #content h1 {
+  text-align: center !important;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic !important;
+  font-weight: 300 !important;
+  font-size: 2.5rem !important;
+  color: #FAF5F0 !important;
+  margin: 40px 0 24px !important;
+  position: relative !important;
+}
+.cms-id-page h1::after, .page-header h1::after {
+  content: '✦' !important;
+  display: block !important;
+  color: #B08968 !important;
+  font-size: 14px !important;
+  margin: 18px auto 0 !important;
+  letter-spacing: 0.6em !important;
+}
+
+/* Liste des pages CMS — aérer + couleur correcte */
+.cms-page .page-content ul,
+.page-content ul, #content > ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  text-align: center !important;
+  margin: 32px auto !important;
+  max-width: 480px !important;
+}
+.cms-page .page-content ul li,
+.page-content ul li {
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(176,137,104,0.15) !important;
+}
+.cms-page .page-content ul li:last-child,
+.page-content ul li:last-child { border-bottom: 0 !important; }
+.cms-page .page-content ul li a,
+.page-content ul li a {
+  color: #B8AEAE !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 13px !important;
+  letter-spacing: 0.10em !important;
+  text-transform: uppercase !important;
+  transition: color 0.3s ease !important;
+}
+.cms-page .page-content ul li a:hover,
+.page-content ul li a:hover { color: #C9A5A5 !important; }
+
+
+/* ---- Icône loupe dans la recherche — bien visible ---- */
+#search_widget button[type="submit"] i,
+.search-widget button[type="submit"] i,
+#search_widget .search-submit svg,
+.search-widget button svg, .search-widget i {
+  color: #FAF5F0 !important;
+  fill: #FAF5F0 !important;
+  opacity: 1 !important;
+}
+
+
+/* ---- Texte d'aide newsletter ("Vous pouvez vous désinscrire…") plus discret ---- */
+.block_newsletter .conditions, .iqit-newsletter .conditions,
+.block_newsletter small, .iqit-newsletter small,
+.block_newsletter p.disclaimer {
+  color: #6B4A5A !important;
+  font-size: 10px !important;
+  letter-spacing: 0.05em !important;
+  font-style: italic !important;
+  margin-top: 12px !important;
+}
+/* La tuile claire sous chaque visuel produit */
+.product-miniature .thumbnail-container .thumbnail.product-thumbnail img {
+  background: #FBF4F2;        /* ivoire rosé — votre charte */
+  border-radius: 10px;
+  padding: 12px;
+  box-sizing: border-box;     /* le padding ne déforme pas la taille */
+}
+
+/* Le conteneur lui-même, pour que les coins arrondis ne soient pas rognés */
+.product-miniature .thumbnail-container {
+  border-radius: 10px;
+  overflow: hidden;
+}
+css.product-miniature .thumbnail-container .thumbnail.product-thumbnail img {
+  background: #FBF4F2 !important;
+}
+/* Selects Couleur / Taille lisibles sur fond sombre, dans tous les etats */
+.product-variants .form-control,
+.product-variants select,
+.product-actions select {
+  background-color: #FBF4F2 !important;  /* fond ivoire constant */
+  color: #1A1A1A !important;             /* texte sombre constant */
+  border: 1px solid #B76E79;             /* liseré rose-gold */
+}
+.product-variants select:focus,
+.product-variants select:hover,
+.product-actions select:focus {
+  background-color: #FFFFFF !important;
+  color: #1A1A1A !important;
+}
+/* Les options du menu deroulant elles-memes */
+.product-variants select option {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+}
+/* Coupe les pseudo-elements decoratifs (etoiles/voile) de la vignette IQIT */
+.product-miniature .thumbnail-container::before,
+.product-miniature .thumbnail-container::after,
+.product-miniature .thumbnail-container:hover::before,
+.product-miniature .thumbnail-container:hover::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  opacity: 0 !important;
+}
+.product-miniature .thumbnail-container .thumbnail.product-thumbnail::before,
+.product-miniature .thumbnail-container .thumbnail.product-thumbnail::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+/* La quantite reste a sa place naturelle */
+.product-quantity,
+.product-qty {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+/* Seule la rangee coeur/comparateur/panier est reorganisee */
+.col-add-btn {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+.col-add-wishlist,
+.col-add-compare {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  width: auto !important;
+  margin-top: 12px;
+}
+/* ============================================================
+   PLAISIRS DE FEMMES — Cartes produit (bloc consolidé)
+   À coller À LA FIN de votre iquit.css : il supersède la
+   section 10 et le correctif de bas de fichier (règles en
+   double / contradictoires), que vous pourrez retirer ensuite.
+ 
+   Principe : photos fournisseur en JPG fond blanc → posées
+   sur une TUILE IVOIRE, encadrées, sur la carte sombre.
+   ============================================================ */
+ 
+/* --- La carte : sombre, qui s'élève doucement au survol --- */
+.product-miniature,
+article.product-miniature,
+.js-product article.product-miniature {
+  background: var(--pdf-noir, #0D0D0D) !important;
+  border: 1px solid transparent !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease !important;
+}
+.product-miniature:hover {
+  border-color: var(--pdf-or-rose, #B08968) !important;   /* liseré or rosé au survol */
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6) !important;
+}
+ 
+/* --- La zone image = une tuile ivoire uniforme ---
+   La photo blanche du fournisseur s'y fond sans couture. */
+.product-miniature .thumbnail-container,
+.product-miniature .thumbnail-container .product-thumbnail,
+.product-miniature .thumbnail-container .thumbnail.product-thumbnail,
+.product-miniature .product-image {
+  background: #FBF4F2 !important;            /* ivoire rosé — charte */
+  border-radius: 12px 12px 0 0 !important;   /* coins arrondis en haut */
+  height: 320px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+.product-miniature .product-thumbnail img,
+.product-miniature .thumbnail-container img,
+.product-miniature img.img-fluid {
+  max-height: 320px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  padding: 16px !important;                  /* l'image respire dans la tuile */
+  box-sizing: border-box !important;
+  background: transparent !important;
+}
+ 
+/* --- On neutralise tout effet décoratif hérité
+   (étoiles / voile sombre de l'ancienne section 10) --- */
+.product-miniature .thumbnail-container::before,
+.product-miniature .thumbnail-container::after,
+.product-miniature .thumbnail-container:hover::before,
+.product-miniature .thumbnail-container:hover::after,
+.product-miniature .product-thumbnail::before,
+.product-miniature .product-thumbnail::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+ 
+/* --- Le bas de carte (nom, prix) reste sur le sombre --- */
+.product-miniature .product-description,
+.product-miniature .product-title,
+.product-miniature .product-title a {
+  background: transparent !important;
+  color: var(--pdf-creme, #FAF5F0) !important;
+}
+.product-miniature .product-price-and-shipping,
+.product-miniature .price,
+.product-miniature .product-price {
+  color: var(--pdf-creme, #FAF5F0) !important;
+}
+.product-miniature .regular-price {
+  color: var(--pdf-gris-moyen, #8A7E7E) !important;   /* prix barré, discret */
+}
+ 
+/* --- Variantes couleur / taille : lisibles sur fond sombre --- */
+.product-variants .form-control,
+.product-variants select,
+.product-actions select,
+.product-variants select option {
+  background-color: #FBF4F2 !important;
+  color: #1A1A1A !important;
+  border: 1px solid var(--pdf-or-rose, #B08968) !important;
+}

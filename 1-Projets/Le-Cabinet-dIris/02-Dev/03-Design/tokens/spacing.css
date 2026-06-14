@@ -1,0 +1,41 @@
+/* Le Cabinet d'Iris — Spacing, borders, radii, motion */
+
+:root {
+  /* ── Radii — quasi nuls : l'univers est rectiligne, gravure ── */
+  --radius-none: 0;
+  --radius-subtle: 1px;     /* badges */
+  --radius-button: 2px;     /* bouton « Poussez la porte » */
+
+  /* ── Borders — hairlines dorées ───────────────── */
+  --border-hairline: 0.5px solid var(--color-border);
+  --border-hairline-strong: 0.5px solid var(--color-border-strong);
+  --border-rule: 1px solid var(--color-border);
+  --border-rule-strong: 1px solid var(--color-accent);
+
+  /* ── Spacing scale ────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 30px;
+  --space-7: 40px;
+  --space-8: 50px;
+  --space-9: 80px;
+
+  /* Component-specific paddings (from brief) */
+  --pad-btn: 14px 40px;           /* add-to-cart, btn-enter */
+  --pad-btn-sm: 12px 40px;        /* btn-vitrine */
+  --pad-btn-pill: 6px 18px;       /* cabinet-entry nav button */
+  --pad-badge: 4px 12px;
+  --pad-image-frame: 8px;         /* cadre image produit */
+
+  /* ── Motion — fondus lents, jamais de rebond ──── */
+  --transition-base: 0.3s ease; /* @kind other */
+  --transition-color: color 0.3s ease;
+  --transition-all: all 0.3s ease; /* @kind other */
+
+  /* ── Layout ───────────────────────────────────── */
+  --measure-editorial: 700px;     /* texte éditorial catégorie */
+  --measure-gate: 500px;          /* paragraphes du sas */
+}

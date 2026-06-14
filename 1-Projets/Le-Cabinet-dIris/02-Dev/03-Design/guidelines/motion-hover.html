@@ -1,0 +1,26 @@
+<!-- @dsCard group="Spacing" viewport="700x150" subtitle="Transitions 0.3s ease uniquement — survolez pour voir" name="Motion & hover" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 20px 24px; background: var(--surface-page); display: flex; align-items: center; gap: 24px; }
+  .meta { font-family: var(--font-sans-body); font-weight: 300; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: block; margin-top: 8px; text-align: center; }
+  .demo-link { font-family: var(--font-serif-display); font-size: 14px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-text-primary); cursor: pointer; transition: color 0.3s ease; }
+  .demo-link:hover { color: var(--color-accent); }
+  .demo-btn { font-family: var(--font-serif-display); font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; background: var(--color-accent); color: var(--color-primary); border: none; padding: 10px 26px; cursor: pointer; transition: background-color 0.3s ease; }
+  .demo-btn:hover { background: var(--color-accent-dark); }
+  .demo-card { width: 90px; height: 64px; background: var(--color-background); border: 0.5px solid var(--color-border); transition: border-color 0.3s ease; cursor: pointer; }
+  .demo-card:hover { border-color: var(--color-accent); }
+  .demo-ghost { font-family: var(--font-sans-body); font-size: 12px; color: var(--color-text-primary); opacity: 0.7; transition: opacity 0.3s ease, color 0.3s ease; cursor: pointer; }
+  .demo-ghost:hover { opacity: 1; color: var(--color-accent); }
+</style>
+</head>
+<body>
+  <div><span class="demo-link">Lien nav</span><span class="meta">color → or</span></div>
+  <div><button class="demo-btn">Bouton</button><span class="meta">bg → or sombre</span></div>
+  <div><div class="demo-card"></div><span class="meta">border → or plein</span></div>
+  <div><span class="demo-ghost">Lien footer</span><span class="meta">opacité 0.7 → 1</span></div>
+</body>
+</html>

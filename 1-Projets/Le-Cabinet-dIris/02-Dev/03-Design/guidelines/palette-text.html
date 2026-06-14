@@ -1,0 +1,35 @@
+<!-- @dsCard group="Colors" viewport="700x150" subtitle="Couleurs de texte et combinaisons autorisées" name="Texte & contrastes" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 16px; background: var(--surface-page); }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .cell { padding: 14px 14px; box-sizing: border-box; }
+  .t { font-family: var(--font-serif-display); font-size: 17px; font-weight: 600; letter-spacing: 0.02em; margin: 0 0 2px; }
+  .s { font-family: var(--font-sans-body); font-size: 11px; font-weight: 300; letter-spacing: 0.06em; margin: 0; opacity: 0.8; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell" style="background: var(--color-background); border: 0.5px solid var(--color-border);">
+      <p class="t" style="color: var(--color-text-primary);">Texte principal</p>
+      <p class="s" style="color: var(--color-text-secondary);">Secondaire #5A5A6E</p>
+    </div>
+    <div class="cell" style="background: var(--color-primary);">
+      <p class="t" style="color: var(--color-text-on-dark);">Sur sombre</p>
+      <p class="s" style="color: var(--color-accent);">Accent or antique</p>
+    </div>
+    <div class="cell" style="background: var(--color-accent);">
+      <p class="t" style="color: var(--color-text-on-accent);">Sur accent</p>
+      <p class="s" style="color: var(--color-text-on-accent);">Noir d'encre</p>
+    </div>
+    <div class="cell" style="background: var(--color-cabinet);">
+      <p class="t" style="color: var(--color-text-on-dark);">Sur prune</p>
+      <p class="s" style="color: var(--color-accent-light);">Or clair admis</p>
+    </div>
+  </div>
+</body>
+</html>

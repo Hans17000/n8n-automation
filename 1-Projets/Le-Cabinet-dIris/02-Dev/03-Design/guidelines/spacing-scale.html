@@ -1,0 +1,36 @@
+<!-- @dsCard group="Spacing" viewport="700x190" subtitle="Échelle 4-80px · paddings composants" name="Échelle d'espacement" -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 16px 24px; background: var(--surface-page); }
+  .row { display: flex; align-items: flex-end; gap: 14px; margin-bottom: 14px; }
+  .bar { background: var(--color-accent); width: 28px; }
+  .lbl { font-family: var(--font-sans-body); font-weight: 300; font-size: 10px; letter-spacing: 0.08em; color: var(--text-muted); text-align: center; display: block; margin-top: 4px; }
+  .pads { display: flex; gap: 10px; }
+  .pad { font-family: var(--font-sans-body); font-size: 10.5px; letter-spacing: 0.08em; color: var(--text-muted); border: 0.5px solid var(--color-border); padding: 6px 10px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div><div class="bar" style="height: 4px;"></div><span class="lbl">4</span></div>
+    <div><div class="bar" style="height: 8px;"></div><span class="lbl">8</span></div>
+    <div><div class="bar" style="height: 12px;"></div><span class="lbl">12</span></div>
+    <div><div class="bar" style="height: 16px;"></div><span class="lbl">16</span></div>
+    <div><div class="bar" style="height: 20px;"></div><span class="lbl">20</span></div>
+    <div><div class="bar" style="height: 30px;"></div><span class="lbl">30</span></div>
+    <div><div class="bar" style="height: 40px;"></div><span class="lbl">40</span></div>
+    <div><div class="bar" style="height: 50px;"></div><span class="lbl">50</span></div>
+    <div><div class="bar" style="height: 80px;"></div><span class="lbl">80</span></div>
+  </div>
+  <div class="pads">
+    <span class="pad">Bouton 14×40</span>
+    <span class="pad">Badge 4×12</span>
+    <span class="pad">Nav pill 6×18</span>
+    <span class="pad">Cadre image 8</span>
+    <span class="pad">Éditorial max 700px</span>
+  </div>
+</body>
+</html>

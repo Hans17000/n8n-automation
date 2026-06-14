@@ -1,0 +1,137 @@
+<!-- ============================================================
+     PLAISIRS DE FEMMES — PAGE « Demander conseil » (v2, sur-mesure)
+     ------------------------------------------------------------
+     À coller en mode CODE / SOURCE d'une page CMS.
+
+     • 5 conseillères sous pseudonymes (vie privée de l'équipe).
+     • Le formulaire envoie vers le traitant PHP « conseil-handler.php »
+       (à déposer à la racine du site par FTP — fichier fourni à part),
+       qui délivre chaque message à contact@plaisirs-de-femmes.fr.
+     • Champ piège anti-spam (honeypot) « website », invisible.
+     • Petite bannière de confirmation pilotée par ?ok=1 / ?ok=0.
+
+     >>> AVANT MISE EN LIGNE <<<
+     - Remplace, dans le traitant PHP, l'id de la page de retour.
+     - Si ton éditeur retire la balise <script>, vois la note en bas.
+     ============================================================ -->
+
+<style>
+.pdf-conseil{--or-rose:#C68B7C;--bordeaux:#6B2D3E;--or:#C2A06B;--creme:#FAF5F0;--surface:#16100F;
+  max-width:900px;margin:0 auto;padding:10px 20px 60px;color:var(--creme);
+  font-family:'Raleway',sans-serif;line-height:1.7;}
+.pdf-conseil h1{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;
+  font-size:clamp(34px,6vw,56px);text-align:center;margin:10px 0 6px;}
+.pdf-conseil .pdf-eyebrow{display:block;text-align:center;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:var(--or-rose);margin-bottom:6px;}
+.pdf-conseil .pdf-intro{text-align:center;max-width:620px;margin:0 auto 48px;color:#E9DED7;}
+.pdf-conseil h2{font-family:'Playfair Display',serif;font-weight:400;font-size:26px;
+  text-align:center;margin:46px 0 6px;}
+.pdf-conseil .pdf-rule{width:60px;height:1px;background:var(--or-rose);margin:0 auto 30px;}
+
+.pdf-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin-bottom:16px;}
+.pdf-card{background:rgba(255,255,255,.03);border:1px solid rgba(198,139,124,.25);
+  border-radius:12px;padding:22px 16px;text-align:center;}
+.pdf-card .pdf-mono{width:52px;height:52px;border-radius:50%;margin:0 auto 12px;
+  display:flex;align-items:center;justify-content:center;background:var(--bordeaux);
+  font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--creme);}
+.pdf-card h3{font-family:'Playfair Display',serif;font-weight:400;font-size:19px;margin:0 0 4px;}
+.pdf-card p{margin:0;font-size:12px;color:#CDBEB6;}
+.pdf-team-note{text-align:center;font-size:12px;font-style:italic;color:#B7A79F;margin-bottom:10px;}
+
+.pdf-flash{max-width:620px;margin:0 auto 22px;padding:14px 18px;border-radius:8px;
+  text-align:center;font-size:14px;}
+.pdf-flash-ok{background:rgba(107,45,62,.25);border:1px solid var(--or-rose);color:var(--creme);}
+.pdf-flash-err{background:rgba(120,40,40,.3);border:1px solid #C97A7A;color:#F3DADA;}
+
+.pdf-form{background:rgba(255,255,255,.02);border:1px solid rgba(198,139,124,.25);
+  border-radius:14px;padding:34px;margin-top:14px;}
+.pdf-form .pdf-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.pdf-field{margin-bottom:18px;}
+.pdf-field label{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--or-rose);margin-bottom:7px;}
+.pdf-field input,.pdf-field select,.pdf-field textarea{width:100%;box-sizing:border-box;
+  background:rgba(255,255,255,.04);border:1px solid rgba(198,139,124,.3);border-radius:6px;
+  padding:12px 14px;color:var(--creme);font-family:'Raleway',sans-serif;font-size:15px;
+  transition:border-color .3s ease,background .3s ease;}
+.pdf-field input:focus,.pdf-field select:focus,.pdf-field textarea:focus{outline:none;
+  border-color:var(--or-rose);background:rgba(255,255,255,.06);}
+.pdf-field textarea{min-height:140px;resize:vertical;}
+.pdf-field select option{background:var(--surface);color:var(--creme);}
+.pdf-submit{width:100%;background:var(--or-rose);color:#0D0D0D;border:none;border-radius:4px;
+  padding:15px;font-family:'Raleway',sans-serif;font-size:13px;letter-spacing:.2em;
+  text-transform:uppercase;cursor:pointer;transition:background .3s ease,transform .2s ease;}
+.pdf-submit:hover{background:var(--creme);transform:translateY(-2px);}
+.pdf-reassure{text-align:center;font-size:13px;color:#B7A79F;margin-top:20px;}
+.pdf-reassure strong{color:#E9DED7;font-weight:600;}
+.pdf-hp{position:absolute;left:-9999px;top:-9999px;height:0;overflow:hidden;}
+
+@media(max-width:680px){.pdf-form .pdf-row{grid-template-columns:1fr;}}
+</style>
+
+<div class="pdf-conseil">
+
+  <span class="pdf-eyebrow">Un échange, en toute confidentialité</span>
+  <h1>Demander conseil</h1>
+  <p class="pdf-intro">Une hésitation sur une taille, l'envie d'un avis avant de choisir, une question
+  délicate&nbsp;? Notre service conseil vous répond avec attention, sans jugement et sans engagement.
+  Toutes les femmes, toutes les courbes, toutes les questions y ont leur place.</p>
+
+  <h2>Votre service conseil</h2>
+  <div class="pdf-rule"></div>
+  <div class="pdf-team">
+    <div class="pdf-card"><div class="pdf-mono">C</div><h3>Camille</h3><p>Lingerie de nuit, déshabillés &amp; satins.</p></div>
+    <div class="pdf-card"><div class="pdf-mono">É</div><h3>Élise</h3><p>Grande taille, maintien &amp; confort jusqu'au 4XL.</p></div>
+    <div class="pdf-card"><div class="pdf-mono">M</div><h3>Margaux</h3><p>Pièces affirmées, jeux &amp; coffrets.</p></div>
+    <div class="pdf-card"><div class="pdf-mono">I</div><h3>Inès</h3><p>Premier achat &amp; accord des pièces.</p></div>
+    <div class="pdf-card"><div class="pdf-mono">J</div><h3>Juliette</h3><p>Dentelle, matières délicates &amp; entretien.</p></div>
+  </div>
+  <p class="pdf-team-note">Écrivez-nous&nbsp;: la conseillère la plus à même de vous répondre prend le relais.</p>
+
+  <!-- Bannière de confirmation (pilotée par ?ok=1 / ?ok=0) -->
+  <div id="pdf-flash" class="pdf-flash" style="display:none"></div>
+
+  <!-- FORMULAIRE — envoie vers le traitant PHP -->
+  <form class="pdf-form" action="/conseil-handler.php" method="post">
+
+    <!-- Honeypot anti-spam : doit rester vide -->
+    <div class="pdf-hp" aria-hidden="true">
+      <label>Ne pas remplir <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+
+    <div class="pdf-row">
+      <div class="pdf-field">
+        <label for="pdf-prenom">Votre prénom</label>
+        <input type="text" id="pdf-prenom" name="prenom" required placeholder="Comment vous appeler&nbsp;?">
+      </div>
+      <div class="pdf-field">
+        <label for="pdf-email">Votre e-mail</label>
+        <input type="email" id="pdf-email" name="email" required placeholder="pour recevoir notre réponse">
+      </div>
+    </div>
+    <div class="pdf-field">
+      <label for="pdf-objet">L'objet de votre message</label>
+      <select id="pdf-objet" name="objet">
+        <option>Un conseil de taille</option>
+        <option>M'aider à choisir une pièce</option>
+        <option>Une question sur ma commande</option>
+        <option>Autre question</option>
+      </select>
+    </div>
+    <div class="pdf-field">
+      <label for="pdf-message">Votre message</label>
+      <textarea id="pdf-message" name="message" required placeholder="Dites-nous tout — mensurations, pièce qui vous fait envie, hésitation… Nous sommes là pour ça."></textarea>
+    </div>
+    <button type="submit" class="pdf-submit">Envoyer mon message</button>
+    <p class="pdf-reassure"><strong>Réponse sous 24 à 48&nbsp;h</strong>, en toute discrétion. Vos informations restent strictement confidentielles.</p>
+  </form>
+
+</div>
+
+<script>
+(function(){
+  var p = new URLSearchParams(window.location.search), f = document.getElementById('pdf-flash');
+  if(!f) return;
+  if(p.get('ok')==='1'){ f.textContent='Merci, votre message est bien parti — nous vous répondons sous 24 à 48\u00A0h.'; f.className='pdf-flash pdf-flash-ok'; f.style.display='block'; }
+  else if(p.get('ok')==='0'){ f.textContent="Le message n'a pas pu partir. Vérifiez votre e-mail et votre message, puis réessayez."; f.className='pdf-flash pdf-flash-err'; f.style.display='block'; }
+})();
+</script>
