@@ -1,0 +1,27 @@
+{
+  "prestashop": {
+    "url": "https://plaisirs-de-femmes.fr",
+    "api_key": "6EZ2MXG2E5NM1L5A7J2UMV3ESA99KI42",
+    "language_id": 1,
+    "img_dir": "/home/plaisirs-de-femmes/htdocs/www.plaisirs-de-femmes.fr/img/p"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 3306,
+    "name": "prestanew",
+    "user": "presta",
+    "password": "LaRochelle2018@"
+  },
+  "defaults": {
+    "coef": 2.2,
+    "tax_id": 1,
+    "top_per_category": 10,
+    "ref_prefix": "PDF",
+    "ai_port": 1234,
+    "ai_delay": 0.5
+  },
+  "paths": {
+    "output_dir": "./output",
+    "log_dir": "./logs"
+  }
+}

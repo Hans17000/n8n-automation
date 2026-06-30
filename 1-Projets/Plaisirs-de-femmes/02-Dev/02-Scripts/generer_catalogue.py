@@ -29,7 +29,7 @@ from datetime import datetime, timedelta
 # ══════════════════════════════════════════════════════════════════════════════
 
 DEFAULT_TOP        = 10
-DEFAULT_COEF       = 2.5     # coefficient prix : wholesale × coef = prix HT affiché
+DEFAULT_COEF       = 2.2     # coefficient prix : wholesale × coef = prix HT affiché
 TVA                = 20      # taux TVA France (%)
 PRICE_ENDING       = 0.90    # arrondi psychologique ,90
 RECENCE_JOURS      = 365

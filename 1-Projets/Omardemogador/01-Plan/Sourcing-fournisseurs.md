@@ -64,6 +64,16 @@ Fabricant familial fondé en **1895** à Alep, désormais basé à **Villeurbann
 - **Atout** : traçabilité irréprochable, certifications bio, positionnement qualitatif cohérent avec Omar de Mogador. DIP/CPNP détenus par Najjar (phase 1 sereine).
 - **Couverture** : **Savonnerie orientale** (univers Hammam) + Soins corps/cheveux.
 - **Distribution B2B** : via dpnature.fr et accès direct revendeur → site [najel.net](https://najel.net/).
+- **MOQ par référence** (2026-06-15) : structure par carton, non par unité.
+  - *Savon d'Alep classique (bestseller)* : carton de **12 savons** → 41,76 € HT | Coût unitaire : 3,48 € | PVC Najel : 10,02 €
+  - *Savon liquide 500 ml (bestseller)* : carton de **8 flacons** → 25,28 € HT | Coût unitaire : 3,16 € | PVC Najel : 9,18 €
+  - Autres références : à demander.
+  
+  **Stratégie tarifaire OdM** : reprendre les PVC Najel à l'identique, sans supplément. Logique : Omar de Mogador est curateur (sélection qualitative, storytelling, curation), pas revendeur qui gonfle les prix. La valeur ajoutée c'est la présentation, l'univers, la confiance — pas le markup. Objectif : conserver la confiance client et bâtir une relation de long terme. *Leçon : qualité assumée plutôt que prix artificiellement gonflé.*
+  
+  **⚠️ Note importante (2026-06-15)** : le coefficient Najel (**×2,87**) dépasse largement le ×2,5 visé pour Matterhorn/Plaisirs de Femmes. Cela reflète deux réalités : (1) Najel vend du *prestige historique* (1895, traçabilité, Alep authentique) ; (2) les PVC Najel intègrent déjà une marge revendeur bâtie pour des canal selectifs (spa, instituts). Pour Omar de Mogador, c'est acceptable car le positionnement est premium-éditorial, pas généraliste comme Plaisirs de Femmes. À confirmer : c'est une stratégie consciente d'alignement marque, pas une dérive tarifaire.
+  
+  **Verdict** : très abordable pour démarrage prudent (12–48 € par carton = test viable à budget réduit).
 
 ---
 
@@ -110,14 +120,14 @@ Site actif : **[insphy.com](https://www.insphy.com/)** (kinesante.fr est parké 
 
 ## 🇧🇪 Nouvelles pistes — Belgique
 
-| Fournisseur | Profil | Atout pour OdM | Site |
-|---|---|---|---|
-| **Argane.be** | Spécialiste belge cosmétiques marocains naturels — argan, savon noir, argile | Gamme complète, positionnement naturel, proximité UE | [argane.be](https://argane.be/fr/cosmetique.html) |
-| **MoroccanOrganicBeauty** | Producteur/grossiste/exportateur, **marque blanche ECOCERT/COSMOS**, étiquetage UE/US conforme | Meilleur candidat **marque blanche** certifiée phase 2 | [moroccanorganicbeauty.com](https://moroccanorganicbeauty.com/) |
+| Fournisseur | Profil | Atout pour OdM | Site | Statut |
+|---|---|---|---|---|
+| **Argane.be** | Spécialiste belge cosmétiques marocains naturels — argan, savon noir, argile | Gamme complète, positionnement naturel, proximité UE | [argane.be](https://argane.be/fr/cosmetique.html) | ❌ **Écarté** : MOQ 48 pièces/ref minimum |
+| **MoroccanOrganicBeauty** | Producteur/grossiste/exportateur, **marque blanche ECOCERT/COSMOS**, étiquetage UE/US conforme | Meilleur candidat **marque blanche** certifiée phase 2 | [moroccanorganicbeauty.com](https://moroccanorganicbeauty.com/) | 🔎 À évaluer |
 
 ---
 
-## Recommandation mise à jour (2026-06-09)
+## Recommandation mise à jour (2026-06-15)
 
 **Contrats signés (actifs) :**
 - ✅ **Najel** — savonnerie orientale premium (savon d'Alep, soins bio)
@@ -127,7 +137,7 @@ Site actif : **[insphy.com](https://www.insphy.com/)** (kinesante.fr est parké 
 **À continuer de chercher (catalogue à étoffer) :**
 - 🔎 **maroc-argan.fr** — cœur de gamme hammam/argan, contacter pour devis pro
 - 🔎 **Argand'Or (DE)** ou **Cooperativen-Arganöl.de** — argan bio avec storytelling coopérative fort
-- 🔎 **Argane.be** — à évaluer pour compléter le rayon cosmétiques marocains
+- ❌ **Argane.be** — écart : MOQ 48 pièces/référence minimum (incompatible démarrage prudent, cf. budget 600 € stock phase 1)
 
 **Phase 2 (marque blanche certifiée) :** **MoroccanOrganicBeauty** (ECOCERT/COSMOS).
 
